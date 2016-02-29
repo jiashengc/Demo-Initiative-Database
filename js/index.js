@@ -91,6 +91,14 @@ $(document).ready(function() {
     searchedData(user_input);
   });
   
+  // Search Keypress
+  $(".searched").keypress(function(event) {
+    if(event.which == 13) {
+      var user_input = $(".searched").val();
+      searchedData(user_input);
+    }
+  });
+  
   // Subject Specific
   $('#filter-subject-specific').click(function() {
     filterData("Subject Specific");
