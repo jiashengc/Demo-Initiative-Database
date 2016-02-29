@@ -59,10 +59,38 @@ $(document).ready(function() {
     });
   }
 
+  // Search Query
+  function searchedData(searchword) {
+    $.getJSON(url, function(data) {
+
+      var entry = data.feed.entry;
+
+      $(".list").empty();
+
+      for (var i = 0; i < entry.length; i++) {
+        var ititle = entry[i].title.$t;
+        var icategory = entry[i].gsx$category.$t;
+        var idescription = entry[i].gsx$description.$t;
+        var iwebsite = entry[i].gsx$website.$t;
+        var iimage = entry[i].gsx$image.$t;
+
+        if (ititle.indexOf(searchword) >= 0 || idescription.indexOf(searchword) >= 0) {
+          $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+        };
+      };
+    });
+  }
+  
   // Generate the Initial Data
   getData();
 
   // These are the filter buttons function
+  // Search Button
+  $("#search_button").click(function() {
+    var user_input = $(".searched").val();
+    searchedData(user_input);
+  });
+  
   // Subject Specific
   $('#filter-subject-specific').click(function() {
     filterData("Subject Specific");
