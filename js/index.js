@@ -16,12 +16,14 @@ $(document).ready(function() {
   // Make sure it is public or set to Anyone with link can view 
   var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
 
-  // Create empty arrays for Data
+  // Append all data unto the screen
   function getData() {
     $.getJSON(url, function(data) {
 
       var entry = data.feed.entry;
 
+      $(".list").empty();
+      
       for (var i = 0; i < entry.length; i++) {
         var ititle = entry[i].title.$t;
         var icategory = entry[i].gsx$category.$t;
@@ -30,67 +32,59 @@ $(document).ready(function() {
         var iimage = entry[i].gsx$image.$t;
 
         $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
-        
-        
+
       };
     });
   }
 
-  // Automatic generate Data
+  // Filters data
+  function filterData(filteredword) {
+    $.getJSON(url, function(data) {
+
+      var entry = data.feed.entry;
+
+      $(".list").empty();
+
+      for (var i = 0; i < entry.length; i++) {
+        var ititle = entry[i].title.$t;
+        var icategory = entry[i].gsx$category.$t;
+        var idescription = entry[i].gsx$description.$t;
+        var iwebsite = entry[i].gsx$website.$t;
+        var iimage = entry[i].gsx$image.$t;
+
+        if (filteredword == icategory) {
+          $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+        };
+      };
+    });
+  }
+
+  // Generate the Initial Data
   getData();
 
   // These are the filter buttons function
   // Subject Specific
   $('#filter-subject-specific').click(function() {
-    featureList.filter(function(item) {
-      if (item.values().category == "(Subject Specific)") {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return false;
+    filterData("Subject Specific");
   });
 
   // Literacy 
   $('#filter-literacy').click(function() {
-    featureList.filter(function(item) {
-      if (item.values().category == "(Literacy)") {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return false;
+    filterData("Literacy");
   });
 
   // Teaching Quality
   $('#filter-teaching-quality').click(function() {
-    featureList.filter(function(item) {
-      if (item.values().category == "(Teaching Quality)") {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return false;
+    filterData("Teaching Quality");
   });
 
   // Career Development
   $('#filter-career-development').click(function() {
-    featureList.filter(function(item) {
-      if (item.values().category == "(Career Development)") {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return false;
+    filterData("Career Development");
   });
 
   // Show all
   $('#filter-none').click(function() {
-    featureList.filter();
-    return false;
+    getData();
   });
 });
