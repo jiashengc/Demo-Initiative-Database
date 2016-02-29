@@ -23,7 +23,7 @@ $(document).ready(function() {
       var entry = data.feed.entry;
 
       $(".list").empty();
-      
+
       for (var i = 0; i < entry.length; i++) {
         var ititle = entry[i].title.$t;
         var icategory = entry[i].gsx$category.$t;
@@ -74,13 +74,13 @@ $(document).ready(function() {
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
 
-        if (ititle.indexOf(searchword) >= 0 || idescription.indexOf(searchword) >= 0) {
+        if (ititle.indexOf(searchword) >= 0 || idescription.indexOf(searchword) >= 0 || icategory.indexOf(searchword) >= 0) {
           $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
         };
       };
     });
   }
-  
+
   // Generate the Initial Data
   getData();
 
@@ -90,15 +90,15 @@ $(document).ready(function() {
     var user_input = $(".searched").val();
     searchedData(user_input);
   });
-  
+
   // Search Keypress
   $(".searched").keypress(function(event) {
-    if(event.which == 13) {
+    if (event.which == 13) {
       var user_input = $(".searched").val();
       searchedData(user_input);
     }
   });
-  
+
   // Subject Specific
   $('#filter-subject-specific').click(function() {
     filterData("Subject Specific");
