@@ -4,11 +4,9 @@ $(document).ready(function() {
    */
 
   /* In case the this list goes crazy, remove the comments for these variables
-  
   var options = {
     valueNames: ['name', 'description', 'category']
   };
-
   var featureList = new List('lovely-things-list', options);
   */
   
@@ -95,8 +93,14 @@ $(document).ready(function() {
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
+        
+        // Set to lower case for more flexibility
+        searchword = searchword.toLowerCase();
+        var ltitle = ititle.toLowerCase();
+        var lcategory = icategory.toLowerCase();
+        var ldescription = idescription.toLowerCase();
 
-        if (ititle.indexOf(searchword) >= 0 || idescription.indexOf(searchword) >= 0 || icategory.indexOf(searchword) >= 0) {
+        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0) {
           appendData(ititle, icategory, idescription, iwebsite, iimage);
         };
       };
