@@ -3,15 +3,17 @@ $(document).ready(function() {
    * LOVELY INITIATIVES
    */
 
-  // Initialize a temp array
-  var tempfarray = [];
-
-  // These shows what kind of items can be filtered
+  /* In case the this list goes crazy, remove the comments for these variables
+  
   var options = {
     valueNames: ['name', 'description', 'category']
   };
 
   var featureList = new List('lovely-things-list', options);
+  */
+  
+  // Initialize a temp array
+  var tempfarray = [];
 
   // ID of the Google Spreadsheet
   var spreadsheetID = "13-ozrkaBha3CQIwP9J_FuEF3hnQpXYrKzVxNqS0Hzoo";
@@ -19,7 +21,12 @@ $(document).ready(function() {
   // Make sure it is public or set to Anyone with link can view 
   var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
 
-  // Append all data unto the screen
+  // Append Data
+  function appendData(ititle, icategory, idescription, iwebsite, iimage) {
+    $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+  }
+
+  // Get the Data from the spreadsheet using JSON
   function getData() {
     $.getJSON(url, function(data) {
 
@@ -34,7 +41,7 @@ $(document).ready(function() {
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
 
-        $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+        appendData(ititle, icategory, idescription, iwebsite, iimage);
 
       };
     });
@@ -45,7 +52,6 @@ $(document).ready(function() {
     $.getJSON(url, function(data) {
 
       var entry = data.feed.entry;
-      var filteredarray = [];
 
       $(".list").empty();
 
@@ -63,7 +69,7 @@ $(document).ready(function() {
               return false;
               break;
             } else if (l == tempfarray.length - 1) {
-              $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+              appendData(ititle, icategory, idescription, iwebsite, iimage);
               break;
             }
           }
@@ -91,7 +97,7 @@ $(document).ready(function() {
         var iimage = entry[i].gsx$image.$t;
 
         if (ititle.indexOf(searchword) >= 0 || idescription.indexOf(searchword) >= 0 || icategory.indexOf(searchword) >= 0) {
-          $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+          appendData(ititle, icategory, idescription, iwebsite, iimage);
         };
       };
     });
@@ -123,8 +129,7 @@ $(document).ready(function() {
       var iwebsite = entry[rn].gsx$website.$t;
       var iimage = entry[rn].gsx$image.$t;
 
-      $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
-
+      appendData(ititle, icategory, idescription, iwebsite, iimage);
     });
   });
 
