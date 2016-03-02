@@ -3,6 +3,9 @@ $(document).ready(function() {
    * LOVELY INITIATIVES
    */
 
+  // Initialize a temp array
+  var tempfarray = [];
+
   // These shows what kind of items can be filtered
   var options = {
     valueNames: ['name', 'description', 'category']
@@ -25,7 +28,7 @@ $(document).ready(function() {
       $(".list").empty();
 
       for (var i = 0; i < entry.length; i++) {
-        var ititle = entry[i].title.$t;
+        var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
@@ -38,23 +41,36 @@ $(document).ready(function() {
   }
 
   // Filters data
-  function filterData(filteredword) {
+  function filterData() {
     $.getJSON(url, function(data) {
 
       var entry = data.feed.entry;
+      var filteredarray = [];
 
       $(".list").empty();
 
       for (var i = 0; i < entry.length; i++) {
-        var ititle = entry[i].title.$t;
+        var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
 
-        if (filteredword == icategory) {
-          $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+        // Filters the cateogries
+        function iscorrectcategory(kategori, nombor) {
+          for (var l = 0; l < tempfarray.length; l++) {
+            if (kategori.indexOf(tempfarray[l]) < 0) {
+              return false;
+              break;
+            } else if (l == tempfarray.length - 1) {
+              $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+              break;
+            }
+          }
         };
+
+        iscorrectcategory(icategory, i);
+
       };
     });
   }
@@ -68,7 +84,7 @@ $(document).ready(function() {
       $(".list").empty();
 
       for (var i = 0; i < entry.length; i++) {
-        var ititle = entry[i].title.$t;
+        var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
@@ -84,7 +100,34 @@ $(document).ready(function() {
   // Generate the Initial Data
   getData();
 
-  // These are the filter buttons function
+  // These are the buttons function
+  // Always Lucky - Random list generator
+  $('#filter-random').click(function() {
+    $.getJSON(url, function(data) {
+      $('input[class=filtercheckbox]').attr('checked', false);
+      tempfarray = [];
+
+      var entry = data.feed.entry;
+      var max = entry.length;
+      var min = 0;
+
+      $(".list").empty();
+
+      // Generate random item
+      var rn = Math.floor(Math.random() * (max + min)) + min;
+
+      // Append the random item unto the database
+      var ititle = entry[rn].gsx$title.$t;
+      var icategory = entry[rn].gsx$category.$t;
+      var idescription = entry[rn].gsx$description.$t;
+      var iwebsite = entry[rn].gsx$website.$t;
+      var iimage = entry[rn].gsx$image.$t;
+
+      $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+
+    });
+  });
+
   // Search Button
   $("#search_button").click(function() {
     var user_input = $(".searched").val();
@@ -99,28 +142,48 @@ $(document).ready(function() {
     }
   });
 
+  // Pushes or removes an element from the array that needs to be filtered
+  function checkboxfilter(categoryp, id) {
+    if (document.getElementById(id).checked) {
+      tempfarray.push(categoryp);
+      filterData();
+    } else {
+      var ssindex = tempfarray.indexOf(categoryp);
+      if (ssindex > -1) {
+        tempfarray.splice(ssindex, 1);
+      }
+      if (tempfarray.length <= 0) {
+        getData();
+      } else {
+        filterData();
+      }
+    }
+  }
+
   // Subject Specific
   $('#filter-subject-specific').click(function() {
-    filterData("Subject Specific");
+    checkboxfilter("Subject Specific", "filter-subject-specific");
   });
 
   // Literacy 
   $('#filter-literacy').click(function() {
-    filterData("Literacy");
+    checkboxfilter("Literacy", "filter-literacy");
   });
 
   // Teaching Quality
   $('#filter-teaching-quality').click(function() {
-    filterData("Teaching Quality");
+    checkboxfilter("Teaching Quality", "filter-teaching-quality");
   });
 
   // Career Development
   $('#filter-career-development').click(function() {
-    filterData("Career Development");
+    checkboxfilter("Career Development", "filter-career-development");
   });
 
   // Show all
   $('#filter-none').click(function() {
+    $('input[class=filtercheckbox]').attr('checked', false);
+    tempfarray = [];
     getData();
   });
 });
