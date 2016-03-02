@@ -63,7 +63,7 @@ $(document).ready(function() {
               return false;
               break;
             } else if (l == tempfarray.length - 1) {
-              $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+              $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
               break;
             }
           }
@@ -91,7 +91,7 @@ $(document).ready(function() {
         var iimage = entry[i].gsx$image.$t;
 
         if (ititle.indexOf(searchword) >= 0 || idescription.indexOf(searchword) >= 0 || icategory.indexOf(searchword) >= 0) {
-          $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+          $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
         };
       };
     });
@@ -123,7 +123,7 @@ $(document).ready(function() {
       var iwebsite = entry[rn].gsx$website.$t;
       var iimage = entry[rn].gsx$image.$t;
 
-      $('.list').append('<li><h4><img src="' + iimage + '" class="thumb" /><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+      $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
 
     });
   });
