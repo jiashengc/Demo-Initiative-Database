@@ -179,15 +179,15 @@ $(document).ready(function() {
     checkboxfilter("Teaching Quality", "filter-teaching-quality");
   });
 
-  // Career Development
-  $('#filter-career-development').click(function() {
-    checkboxfilter("Career Development", "filter-career-development");
-  });
-
   // Personal Development
-  $('#filter-personal-development').click(function() {
-    checkboxfilter("Personal Development", "filter-personal-development");
-  })
+  $('#filter-development').click(function() {
+    checkboxfilter("Development", "filter-development");
+  });
+  
+  // English Oral Profiency
+  $('#filter-english-oral-fluency').click(function() {
+    checkboxfilter("English Oral Fluency", "filter-english-oral-fluency");
+  });
   
   // Literacy 
   $('#filter-literacy').click(function() {
@@ -212,7 +212,7 @@ $(document).ready(function() {
   // Participation
   $("#filter-participation").click(function() {
     checkboxfilter("Participation", "filter-participation");
-  })
+  });
   
   // Show all
   $('#filter-none').click(function() {
