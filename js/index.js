@@ -94,7 +94,7 @@ $(document).ready(function() {
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
         
-        // Set to lower case for more flexibility
+        // Set to lower case for m
         searchword = searchword.toLowerCase();
         var ltitle = ititle.toLowerCase();
         var lcategory = icategory.toLowerCase();
@@ -174,11 +174,6 @@ $(document).ready(function() {
     checkboxfilter("Subject Specific", "filter-subject-specific");
   });
 
-  // Literacy 
-  $('#filter-literacy').click(function() {
-    checkboxfilter("Literacy", "filter-literacy");
-  });
-
   // Teaching Quality
   $('#filter-teaching-quality').click(function() {
     checkboxfilter("Teaching Quality", "filter-teaching-quality");
@@ -189,6 +184,36 @@ $(document).ready(function() {
     checkboxfilter("Career Development", "filter-career-development");
   });
 
+  // Personal Development
+  $('#filter-personal-development').click(function() {
+    checkboxfilter("Personal Development", "filter-personal-development");
+  })
+  
+  // Literacy 
+  $('#filter-literacy').click(function() {
+    checkboxfilter("Literacy", "filter-literacy");
+  });
+  
+  // Numeracy
+  $("#filter-numeracy").click(function() {
+    checkboxfilter("Numeracy", "filter-numeracy");
+  });
+  
+  // Tertiary Education
+  $("#filter-tertiary-education").click(function() {
+    checkboxfilter("Tertiary Education", "filter-tertiary-education");
+  });
+  
+  // Learning Environment
+  $("#filter-learning-environment").click(function () {
+    checkboxfilter("Learning Environment", "filter-learning-environment");
+  });
+  
+  // Participation
+  $("#filter-participation").click(function() {
+    checkboxfilter("Participation", "filter-participation");
+  })
+  
   // Show all
   $('#filter-none').click(function() {
     $('input[class=filtercheckbox]').attr('checked', false);
