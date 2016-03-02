@@ -756,6 +756,10 @@ a {
   text-decoration: none;
 }
 
+.searched {
+  color: #686868;
+}
+
 .tfmlogo {
   display: block;
   margin: 0 auto;
