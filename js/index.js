@@ -13,9 +13,47 @@ $(document).ready(function() {
   // Make sure it is public or set to Anyone with link can view 
   var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
 
+  // Create Modal
+  function getModal(itemid) {
+    $.getJSON(url, function(data) {
+
+      var entry = data.feed.entry;
+
+      var n = itemid;
+      var ititle = entry[n].gsx$title.$t;
+      var icategory = entry[n].gsx$category.$t;
+      var idescription = entry[n].gsx$description.$t;
+      var iwebsite = entry[n].gsx$website.$t;
+      var iimage = entry[n].gsx$image.$t;
+      var istatus = entry[n].gsx$status.$t;
+      var iregion = entry[n].gsx$region.$t;
+      var ifellow = entry[n].gsx$fellow.$t;
+      var ischool = entry[n].gsx$school.$t;
+      var istate = entry[n].gsx$state.$t;
+      var istakeholders = entry[n].gsx$stakeholders.$t;
+      var iresources = entry[n].gsx$resources.$t;
+      var iactivity = entry[n].gsx$activity.$t;
+      var idesiredoutcome = entry[n].gsx$desiredoutcome.$t;
+      var iimpactachieved = entry[n].gsx$impactachieved.$t;
+
+      // Refreshes the Modal
+      $('#myModalLabel').empty();
+      $('#modal-body-1').empty();
+      $('#modal-body-2').empty();
+      $('.modal-footer').empty();
+
+      $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a href="' + iwebsite + '">' + iwebsite + '</a></h4>');
+      $('#modal-body-1').append('<br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4>' + istatus + '<br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4>' + iregion + '<br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
+      $('#modal-body-2').append('<br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
+
+      $('#myModal').modal("show");
+
+    });
+  }
+
   // Append Data
-  function appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow) {
-    $('.list').append('<li><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Categories: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
+  function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow) {
+    $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '<span class="listid"> ' + inum + '</span></span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Categories: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -27,6 +65,7 @@ $(document).ready(function() {
       $(".list").empty();
 
       for (var i = 0; i < entry.length; i++) {
+        var inum = i;
         var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
         var idescription = entry[i].gsx$description.$t;
@@ -36,7 +75,7 @@ $(document).ready(function() {
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
 
-        appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+        appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
 
       };
     });
@@ -51,6 +90,7 @@ $(document).ready(function() {
       $(".list").empty();
 
       for (var i = 0; i < entry.length; i++) {
+        var inum = i;
         var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
         var idescription = entry[i].gsx$description.$t;
@@ -67,7 +107,7 @@ $(document).ready(function() {
               return false;
               break;
             } else if (l == tempfarray.length - 1) {
-              appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+              appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
               break;
             }
           }
@@ -91,6 +131,7 @@ $(document).ready(function() {
       $(".list").empty();
 
       for (var i = 0; i < entry.length; i++) {
+        var inum = i;
         var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
         var idescription = entry[i].gsx$description.$t;
@@ -102,11 +143,11 @@ $(document).ready(function() {
 
         if (type == "region") {
           if (iregion.indexOf(filteredword) >= 0) {
-            appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
           }
         } else if (type = "status") {
           if (filteredword == istatus) {
-            appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
           }
         };
       };
@@ -122,6 +163,7 @@ $(document).ready(function() {
       $(".list").empty();
 
       for (var i = 0; i < entry.length; i++) {
+        var inum = i;
         var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
         var idescription = entry[i].gsx$description.$t;
@@ -141,7 +183,7 @@ $(document).ready(function() {
         var lfellow = ifellow.toLowerCase();
 
         if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0) {
-          appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+          appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
         };
       };
     });
@@ -150,27 +192,12 @@ $(document).ready(function() {
   // Generate the Initial Data
   getData();
 
-  // Create Modal
-  function getModal(itemid) {
-    $.getJSON(url, function(data) {
-      
-      var entry = data.feed.entry;
-      var i = itemid;
+  // Links the title of the Iniative to its profile page
+  $(".list").delegate(".name", "click", function() {
+    var id = $(this).attr("id");
+    getModal(id);
+  });
 
-      var ititle = entry[i].gsx$title.$t;
-      var icategory = entry[i].gsx$category.$t;
-      var idescription = entry[i].gsx$description.$t;
-      var iwebsite = entry[i].gsx$website.$t;
-      var iimage = entry[i].gsx$image.$t;
-      var istatus = entry[i].gsx$status.$t;
-      var iregion = entry[i].gsx$region.$t;
-      var ifellow = entry[i].gsx$fellow.$t;
-
-      $('#profile-modal').modal("toggle");
-      
-    });
-  }
-  
   // These are the buttons function
   // Always Lucky - Random list generator
   $('#filter-random').click(function() {
@@ -309,7 +336,7 @@ $(document).ready(function() {
   });
 
   // wat
-  $("filter-notwat").click(function() {
+  $("#filter-notwat").click(function() {
     getModal(1);
   });
 
