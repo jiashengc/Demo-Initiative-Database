@@ -803,6 +803,32 @@ a:hover {
   font-weight: bold;
 }
 
+.model-content {
+  background-color: #404040;
+}
+
+.modal-header {
+  text-align: center;
+  background-color: #404040;
+  padding: 10px;
+}
+
+.modal-title {
+  font-size: 34px;
+}
+
+.modal-body {
+  background-color: #404040;
+}
+
+.modal-footer {
+  background-color: #404040;
+}
+
+.listid {
+  opacity: 0.0;
+}
+
 /* 
 DEFECTIVE SECTION
 */
