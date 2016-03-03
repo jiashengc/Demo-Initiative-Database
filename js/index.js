@@ -42,7 +42,7 @@ $(document).ready(function() {
       $('#modal-body-2').empty();
       $('.modal-footer').empty();
 
-      $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a href="' + iwebsite + '">' + iwebsite + '</a></h4>');
+      $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">' + iwebsite + '</a></h4>');
       $('#modal-body-1').append('<br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4>' + istatus + '<br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4>' + iregion + '<br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
       $('#modal-body-2').append('<br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
 
