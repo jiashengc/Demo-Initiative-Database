@@ -292,7 +292,7 @@ td {
 }
 
 .menu ul li.name {
-  font-size: 20px;
+  font-size: 20px !important;
   color: #fff;
   font-weight: bold;
 }
