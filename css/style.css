@@ -828,13 +828,13 @@ a:hover {
 }
 
 .modal-website {
-  font-size: 20px;
-  color: #e6e6e6;
-  text-decoration: none;
+  font-size: 20px !important;
+  color: #e6e6e6 !important;
+  text-decoration: none !important;
 }
 
 .modal-website:hover {
-  color: white;
+  color: white !important;
 }
 
 .listid {
