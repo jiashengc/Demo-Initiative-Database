@@ -521,8 +521,8 @@ h1 {
 }
 
 #lovely-things-list .thumb {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   float: left;
   margin-right: 20px;
   margin-bottom: 10px;
@@ -788,6 +788,7 @@ a:hover {
 }
 
 .category {
+  margin-top: 10px;
   font-size: 13px;
 }
 
