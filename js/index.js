@@ -1,15 +1,9 @@
 $(document).ready(function() {
+
   /*
    * LOVELY INITIATIVES
    */
 
-  /* In case the this list goes crazy, remove the comments for these variables
-  var options = {
-    valueNames: ['name', 'description', 'category']
-  };
-  var featureList = new List('lovely-things-list', options);
-  */
-  
   // Initialize a temp array
   var tempfarray = [];
 
@@ -20,8 +14,8 @@ $(document).ready(function() {
   var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
 
   // Append Data
-  function appendData(ititle, icategory, idescription, iwebsite, iimage) {
-    $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="category"> ' + '- ' + icategory + '</span></h4><p class="description">' + idescription + '</p></li>');
+  function appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow) {
+    $('.list').append('<li><h4><a href="' + iwebsite + '"><img src="' + iimage + '" class="thumb" /></a><span class="name"><a href="' + iwebsite + '">' + ititle + '</a></span><span class="fellow"><br> ' + 'by ' + ifellow + '</span></h4><h5 class="category">Categories: ' + icategory + '<br><br><p class="description">' + idescription + '</p></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -38,8 +32,11 @@ $(document).ready(function() {
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
+        var istatus = entry[i].gsx$status.$t;
+        var iregion = entry[i].gsx$region.$t;
+        var ifellow = entry[i].gsx$fellow.$t;
 
-        appendData(ititle, icategory, idescription, iwebsite, iimage);
+        appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
 
       };
     });
@@ -59,6 +56,9 @@ $(document).ready(function() {
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
+        var istatus = entry[i].gsx$status.$t;
+        var iregion = entry[i].gsx$region.$t;
+        var ifellow = entry[i].gsx$fellow.$t;
 
         // Filters the cateogries
         function iscorrectcategory(kategori, nombor) {
@@ -67,7 +67,7 @@ $(document).ready(function() {
               return false;
               break;
             } else if (l == tempfarray.length - 1) {
-              appendData(ititle, icategory, idescription, iwebsite, iimage);
+              appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
               break;
             }
           }
@@ -75,6 +75,40 @@ $(document).ready(function() {
 
         iscorrectcategory(icategory, i);
 
+      };
+    });
+  }
+
+  // Individual Filter Buttons
+  function idvfilterData(filteredword, type) {
+    $('input[class=filtercheckbox]').attr('checked', false);
+    tempfarray = [];
+
+    $.getJSON(url, function(data) {
+
+      var entry = data.feed.entry;
+
+      $(".list").empty();
+
+      for (var i = 0; i < entry.length; i++) {
+        var ititle = entry[i].gsx$title.$t;
+        var icategory = entry[i].gsx$category.$t;
+        var idescription = entry[i].gsx$description.$t;
+        var iwebsite = entry[i].gsx$website.$t;
+        var iimage = entry[i].gsx$image.$t;
+        var istatus = entry[i].gsx$status.$t;
+        var iregion = entry[i].gsx$region.$t;
+        var ifellow = entry[i].gsx$fellow.$t;
+
+        if (type == "region") {
+          if (iregion.indexOf(filteredword) >= 0) {
+            appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+          }
+        } else if (type = "status") {
+          if (filteredword == istatus) {
+            appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+          }
+        };
       };
     });
   }
@@ -93,15 +127,21 @@ $(document).ready(function() {
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
-        
+        var istatus = entry[i].gsx$status.$t;
+        var iregion = entry[i].gsx$region.$t;
+        var ifellow = entry[i].gsx$fellow.$t;
+
         // Set to lower case for m
         searchword = searchword.toLowerCase();
         var ltitle = ititle.toLowerCase();
         var lcategory = icategory.toLowerCase();
         var ldescription = idescription.toLowerCase();
+        var lstatus = istatus.toLowerCase();
+        var lregion = iregion.toLowerCase();
+        var lfellow = ifellow.toLowerCase();
 
-        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0) {
-          appendData(ititle, icategory, idescription, iwebsite, iimage);
+        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0) {
+          appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
         };
       };
     });
@@ -110,6 +150,27 @@ $(document).ready(function() {
   // Generate the Initial Data
   getData();
 
+  // Create Modal
+  function getModal(itemid) {
+    $.getJSON(url, function(data) {
+      
+      var entry = data.feed.entry;
+      var i = itemid;
+
+      var ititle = entry[i].gsx$title.$t;
+      var icategory = entry[i].gsx$category.$t;
+      var idescription = entry[i].gsx$description.$t;
+      var iwebsite = entry[i].gsx$website.$t;
+      var iimage = entry[i].gsx$image.$t;
+      var istatus = entry[i].gsx$status.$t;
+      var iregion = entry[i].gsx$region.$t;
+      var ifellow = entry[i].gsx$fellow.$t;
+
+      $('#profile-modal').modal("toggle");
+      
+    });
+  }
+  
   // These are the buttons function
   // Always Lucky - Random list generator
   $('#filter-random').click(function() {
@@ -132,8 +193,11 @@ $(document).ready(function() {
       var idescription = entry[rn].gsx$description.$t;
       var iwebsite = entry[rn].gsx$website.$t;
       var iimage = entry[rn].gsx$image.$t;
+      var istatus = entry[rn].gsx$status.$t;
+      var iregion = entry[rn].gsx$region.$t;
+      var ifellow = entry[rn].gsx$fellow.$t;
 
-      appendData(ititle, icategory, idescription, iwebsite, iimage);
+      appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
     });
   });
 
@@ -183,37 +247,72 @@ $(document).ready(function() {
   $('#filter-development').click(function() {
     checkboxfilter("Development", "filter-development");
   });
-  
+
   // English Oral Profiency
   $('#filter-english-oral-fluency').click(function() {
     checkboxfilter("English Oral Fluency", "filter-english-oral-fluency");
   });
-  
+
   // Literacy 
   $('#filter-literacy').click(function() {
     checkboxfilter("Literacy", "filter-literacy");
   });
-  
+
   // Numeracy
   $("#filter-numeracy").click(function() {
     checkboxfilter("Numeracy", "filter-numeracy");
   });
-  
+
   // Tertiary Education
   $("#filter-tertiary-education").click(function() {
     checkboxfilter("Tertiary Education", "filter-tertiary-education");
   });
-  
+
   // Learning Environment
-  $("#filter-learning-environment").click(function () {
+  $("#filter-learning-environment").click(function() {
     checkboxfilter("Learning Environment", "filter-learning-environment");
   });
-  
+
   // Participation
   $("#filter-participation").click(function() {
     checkboxfilter("Participation", "filter-participation");
   });
-  
+
+  // North
+  $("#filter-north").click(function() {
+    idvfilterData("North", "region");
+  });
+
+  // South
+  $("#filter-east").click(function() {
+    idvfilterData("East", "region");
+  });
+
+  // West
+  $("#filter-west").click(function() {
+    idvfilterData("West", "region");
+  });
+
+  // South
+  $("#filter-south").click(function() {
+    idvfilterData("South", "region");
+  });
+
+  // Active
+  $("#filter-active").click(function() {
+    idvfilterData("Active", "status");
+  });
+
+  // Inactive
+  $("#filter-inactive").click(function() {
+    idvfilterData("Inactive", "status");
+  });
+
+  // wat
+  $("filter-notwat").click(function() {
+    getModal(1);
+  });
+
   // Show all
   $('#filter-none').click(function() {
     $('input[class=filtercheckbox]').attr('checked', false);
