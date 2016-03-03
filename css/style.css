@@ -801,6 +801,7 @@ a:hover {
 .name {
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .model-content {
@@ -815,6 +816,7 @@ a:hover {
 
 .modal-title {
   font-size: 34px;
+  color: #e6e6e6;
 }
 
 .modal-body {
@@ -823,6 +825,16 @@ a:hover {
 
 .modal-footer {
   background-color: #404040;
+}
+
+.modal-website {
+  font-size: 20px;
+  color: #e6e6e6;
+  text-decoration: none;
+}
+
+.modal-website:hover {
+  color: white;
 }
 
 .listid {
