@@ -172,6 +172,13 @@ $(document).ready(function() {
         var istatus = entry[i].gsx$status.$t;
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
+        var ischool = entry[i].gsx$school.$t;
+        var istate = entry[i].gsx$state.$t;
+        var istakeholders = entry[i].gsx$stakeholders.$t;
+        var iresources = entry[i].gsx$resources.$t;
+        var iactivity = entry[i].gsx$activity.$t;
+        var idesiredoutcome = entry[i].gsx$desiredoutcome.$t;
+        var iimpactachieved = entry[i].gsx$impactachieved.$t;
 
         // Set to lower case for m
         searchword = searchword.toLowerCase();
@@ -181,8 +188,15 @@ $(document).ready(function() {
         var lstatus = istatus.toLowerCase();
         var lregion = iregion.toLowerCase();
         var lfellow = ifellow.toLowerCase();
+        var lschool = ischool.toLowerCase();
+        var lstate = istate.toLowerCase();
+        var lstakeholders = istakeholders.toLowerCase();
+        var lresources = iresources.toLowerCase();
+        var lactivity = iactivity.toLowerCase();
+        var ldesiredoutcome = idesiredoutcome.toLowerCase();
+        var limpactachieved = iimpactachieved.toLowerCase();
 
-        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0) {
+        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0) {
           appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
         };
       };
