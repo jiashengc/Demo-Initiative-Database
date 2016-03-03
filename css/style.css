@@ -291,8 +291,8 @@ td {
   line-height: 60px;
 }
 
-.menu ul li.name {
-  font-size: 20px !important;
+.menu ul li .name {
+  font-size: 30px;
   color: #fff;
   font-weight: bold;
 }
