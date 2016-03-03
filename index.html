@@ -1,66 +1,132 @@
 <!DOCTYPE html>
-<html >
-  <head>
-    <meta charset="UTF-8">
-    <title>Initiative Database List Demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="http://i.imgur.com/XkdIZtt.png">
+<html>
 
-    <!-- Style Sheets -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Initiative Database List Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="http://i.imgur.com/XkdIZtt.png">
 
-  <body>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-  <div id="container">
-  <div class="example-page">
-    <div>
-      <h1>Initiative Database</h1>
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+  <!-- This is the popup modal don't touch it-->
+  <div  id="profile-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        ...
+      </div>
     </div>
+  </div>
+  <!-- The above is the popp modal don't touch it -->
 
-    <div id="main">
-      <h2><a href ="http://teachformalaysia.org">teachformalaysia.org</a></h2>
 
-      <div class="c1">
-        <img class="tfmlogo" src="http://teachformalaysia.org/images/logo.png" />
-        <br><br>
-        <div id="lovely-things-list">
-          <input class="searched" placeholder="" /> <li class="sort btn" id="search_button" data-sort="name">Search</li>
+  <div class="col-md-4">
+    <div class="defective-top"></div>
+    <div class="defective-container">
 
-          <!-- Extra bar for more buttons-->
-          <ul class="sort-by">
-            <li class="btn" id="filter-none">Show all</li>
-            <a href="http://goo.gl/forms/NCoKLLtJUv" target="_blank"><li class="btn" id="add-initiative">Add your Initiative</li></a>
-            <li class="btn" id="filter-random">Always Lucky!</li>
-          </ul>
+      <h5>Region:</h5>
+      <ul class="sort-by">
+        <li class="button" id="filter-north">North</li>
+        <li class="button" id="filter-east">East</li>
+        <li class="button" id="filter-west">West</li>
+        <li class="button" id="filter-south">South
+          <li>
+      </ul>
+      <br><br><br>
 
-          <!-- Filter Buttons-->
-          <!-- Do not touch unless you're adding another filter -->
-          <ul class="filter">
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-subject-specific" />Subject Specific</li>
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-teaching-quality"/>Teaching Quality</li>
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-development"/>Career / Personal Development</li>
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-english-oral-fluency"/>English Oral Fluency</li>
-          </ul>
-          
-          <ul class="filter">
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-literacy"/>Literacy</li>
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-numeracy" />Numeracy</li>
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-tertiary-education"/>Tertiary Education</li>
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-learning-environment"/>Learning Environment</li>
-            <li class="btn"><input type="checkbox" class="filtercheckbox" id="filter-participation"/>Participation</li>
-          </ul> 
-          
-          <ul class="list">
-            
-            <!-- This is the part where JSON will place the initiatives -->
-            
-            <!-- You may insert your custom initiaitve below here-->
-            
-            <!-- List Example -->
-            <!-- You may copy and pasta from within the triple asterisk -->
-            <!-- If you want to add a custom initiative, copy the format below 
+      <h5>Cohoront?</h5>
+      <ul class="sort-by">
+        <li class="button" id="filter-wat">Wat</li>
+        <li class="button" id="filter-wat">Is</li>
+        <li class="button" id="filter-wat">This</li>
+        <li class="button" id="filter-wat">Lol</li>
+      </ul>
+      <br><br><br>
+
+      <h5>Status:</h5>
+      <ul class="sort-by">
+        <li class="button" id="filter-active">Active</li>
+        <li class="button" id="filter-inactive">Inactive</li>
+      </ul>
+      <br><br><br>
+
+      <h5>Resources:</h5>
+      <ul class="sort-by">
+        <li class="button" id="filter-notwat">Wat resources</li>
+        <li class="button" id="filter-wat">Mmmm?</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div id="thecontainer">
+      <div class="example-page">
+        <div>
+          <h1>Initiative Database</h1>
+        </div>
+
+        <div id="main">
+          <h4 class=tfmwebsite><a href ="http://teachformalaysia.org">teachformalaysia.org</a></h4>
+
+          <div class="c1">
+            <img class="tfmlogo" src="http://teachformalaysia.org/images/logo.png" />
+            <br><br>
+
+            <!-- Start if filtering objects -->
+            <div id="lovely-things-list">
+              <ul class="sort-by">
+                <input class="searched" placeholder="" />
+                <li class="sort button" id="search_button" data-sort="name">Search</li>
+              </ul>
+
+
+              <!-- Extra bar for more buttons-->
+              <ul class="sort-by">
+                <li class="button" id="filter-none">Show all</li>
+                <a href="http://goo.gl/forms/NCoKLLtJUv" target="_blank">
+                  <li class="button" id="add-initiative">Add your Initiative</li>
+                </a>
+                <li class="button" id="filter-random">Always Lucky!</li>
+              </ul>
+
+              <!-- Filter Buttons-->
+              <!-- Do not touch unless you're adding another filter -->
+
+              <ul class="sort-by">
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-subject-specific" />Subject Specific</li>
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-teaching-quality" />Teaching Quality</li>
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-development" />Career / Personal Development</li>
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-english-oral-fluency" />English Oral Fluency</li>
+              </ul>
+
+              <ul class="sort-by">
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-literacy" />Literacy</li>
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-numeracy" />Numeracy</li>
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-tertiary-education" />Tertiary Education</li>
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-learning-environment" />Learning Environment</li>
+                <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-participation" />Participation</li>
+              </ul>
+
+              <div class="fixed-list-container">
+                <ul class="list">
+
+                  <!-- This is the part where JSON will place the initiatives -->
+
+                  <!-- You may insert your custom initiaitve below here-->
+
+                  <!-- List Example -->
+                  <!-- You may copy and pasta from within the triple asterisk -->
+                  <!-- If you want to add a custom initiative, copy the format below 
         
         ***
         <li>
@@ -72,23 +138,32 @@
           <p class="description">*Description of Initiative</p>
         </li>
         ***
-
         -->
 
-            <!-- End of List -->
-            <!-- PLEASE Do not edit beyond this -->
-            
-          </ul>
+                  <!-- End of List -->
+                  <!-- PLEASE Do not edit beyond this -->
+
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
+
   <!-- end of #container -->
-  
+
+  <!-- jQuery-->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/list.js/1.0.0/list.min.js'></script>
+  
+  <!-- Latest compiled and minified Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+
+
   <script src="js/index.js"></script>
 
-  </body>
+</body>
+
 </html>
