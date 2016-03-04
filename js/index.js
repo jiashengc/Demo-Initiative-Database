@@ -35,6 +35,7 @@ $(document).ready(function() {
       var iactivity = entry[n].gsx$activity.$t;
       var idesiredoutcome = entry[n].gsx$desiredoutcome.$t;
       var iimpactachieved = entry[n].gsx$impactachieved.$t;
+      var icohorts = entry[n].gsx$cohorts.$t;
 
       // Refreshes the Modal
       $('#myModalLabel').empty();
@@ -43,7 +44,7 @@ $(document).ready(function() {
       $('.modal-footer').empty();
 
       $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">' + iwebsite + '</a></h4>');
-      $('#modal-body-1').append('<br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4>' + istatus + '<br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4>' + iregion + '<br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
+      $('#modal-body-1').append('<br><h4>Cohorts:</h4>' + icohorts + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4>' + istatus + '<br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4>' + iregion + '<br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
       $('#modal-body-2').append('<br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
 
       $('#myModal').modal("show");
@@ -52,8 +53,8 @@ $(document).ready(function() {
   }
 
   // Append Data
-  function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow) {
-    $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '<span class="listid"> ' + inum + '</span></span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Categories: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
+  function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
+    $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '<span class="cohoront-year"> (' + icohorts + ')</span></span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Categories: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -74,8 +75,9 @@ $(document).ready(function() {
         var istatus = entry[i].gsx$status.$t;
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
+        var icohorts = entry[i].gsx$cohorts.$t;
 
-        appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+        appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
 
       };
     });
@@ -99,6 +101,7 @@ $(document).ready(function() {
         var istatus = entry[i].gsx$status.$t;
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
+        var icohorts = entry[i].gsx$cohorts.$t;
 
         // Filters the cateogries
         function iscorrectcategory(kategori, nombor) {
@@ -107,7 +110,7 @@ $(document).ready(function() {
               return false;
               break;
             } else if (l == tempfarray.length - 1) {
-              appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+              appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
               break;
             }
           }
@@ -140,14 +143,15 @@ $(document).ready(function() {
         var istatus = entry[i].gsx$status.$t;
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
+        var icohorts = entry[i].gsx$cohorts.$t;
 
         if (type == "region") {
           if (iregion.indexOf(filteredword) >= 0) {
-            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
           }
         } else if (type = "status") {
           if (filteredword == istatus) {
-            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
           }
         };
       };
@@ -179,6 +183,7 @@ $(document).ready(function() {
         var iactivity = entry[i].gsx$activity.$t;
         var idesiredoutcome = entry[i].gsx$desiredoutcome.$t;
         var iimpactachieved = entry[i].gsx$impactachieved.$t;
+        var icohorts = entry[i].gsx$cohorts.$t;
 
         // Set to lower case
         searchword = searchword.toLowerCase();
@@ -196,8 +201,8 @@ $(document).ready(function() {
         var ldesiredoutcome = idesiredoutcome.toLowerCase();
         var limpactachieved = iimpactachieved.toLowerCase();
 
-        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0) {
-          appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0 || icohorts.indexOf(searchword) >= 0) {
+          appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
         };
       };
     });
@@ -238,8 +243,9 @@ $(document).ready(function() {
       var istatus = entry[rn].gsx$status.$t;
       var iregion = entry[rn].gsx$region.$t;
       var ifellow = entry[rn].gsx$fellow.$t;
+      var icohorts = entry[rn].gsx$cohorts.$t;
 
-      appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+      appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
     });
   });
 
