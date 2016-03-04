@@ -180,7 +180,7 @@ $(document).ready(function() {
         var idesiredoutcome = entry[i].gsx$desiredoutcome.$t;
         var iimpactachieved = entry[i].gsx$impactachieved.$t;
 
-        // Set to lower case for m
+        // Set to lower case
         searchword = searchword.toLowerCase();
         var ltitle = ititle.toLowerCase();
         var lcategory = icategory.toLowerCase();
@@ -229,6 +229,7 @@ $(document).ready(function() {
       var rn = Math.floor(Math.random() * (max + min)) + min;
 
       // Append the random item unto the database
+      var inum = rn;
       var ititle = entry[rn].gsx$title.$t;
       var icategory = entry[rn].gsx$category.$t;
       var idescription = entry[rn].gsx$description.$t;
@@ -238,7 +239,7 @@ $(document).ready(function() {
       var iregion = entry[rn].gsx$region.$t;
       var ifellow = entry[rn].gsx$fellow.$t;
 
-      appendData(ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
+      appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow);
     });
   });
 
