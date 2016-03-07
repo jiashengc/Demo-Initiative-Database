@@ -107,13 +107,26 @@ $(document).ready(function() {
 
         // Filters the cateogries
         function iscorrectcategory(kategori, subkategori, nombor) {
-          for (var l = 0; l < tempfarray.length; l++) {
-            if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0) {
-              return false;
-              break;
-            } else if (l == tempfarray.length - 1) {
-              appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
-              break;
+          // Checks if Main Category Only is checked
+          if (document.getElementById("maincategoryonly").checked) {
+            for (var l = 0; l < tempfarray.length; l++) {
+              if (kategori.indexOf(tempfarray[l]) < 0) {
+                return false;
+                break;
+              } else if (l == tempfarray.length - 1) {
+                appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
+                break;
+              }
+            }
+          } else {
+            for (var l = 0; l < tempfarray.length; l++) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0) {
+                return false;
+                break;
+              } else if (l == tempfarray.length - 1) {
+                appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
+                break;
+              }
             }
           }
         };
@@ -127,6 +140,7 @@ $(document).ready(function() {
   // Individual Filter Buttons
   function idvfilterData(filteredword, type) {
     $('input[class=filtercheckbox]').attr('checked', false);
+        $('input[id=maincategoryonly]').attr('checked', false);
     tempfarray = [];
 
     $.getJSON(url, function(data) {
@@ -246,6 +260,7 @@ $(document).ready(function() {
   $('#filter-random').click(function() {
     $.getJSON(url, function(data) {
       $('input[class=filtercheckbox]').attr('checked', false);
+          $('input[id=maincategoryonly]').attr('checked', false);
       tempfarray = [];
 
       var entry = data.feed.entry;
@@ -305,13 +320,20 @@ $(document).ready(function() {
     }
   }
 
+  // Takes the id of the main categories buttons and send them to filter
   $('#mainkategories').delegate(".filtercheckbox", "click", function() {
     var id = $(this).attr("id");
     var categoryp = $(this).attr("id").replace('filter-', '');
-    
+
     checkboxfilter(categoryp, id);
   });
 
+  $('#maincategoryonly').click(function() {
+    if (tempfarray.length > 0) {
+      filterData();
+    }
+  });
+  
   // North
   $("#filter-north").click(function() {
     idvfilterData("North", "region");
@@ -350,6 +372,7 @@ $(document).ready(function() {
   // Show all
   $('#filter-none').click(function() {
     $('input[class=filtercheckbox]').attr('checked', false);
+    $('input[id=maincategoryonly]').attr('checked', false);
     tempfarray = [];
     getData();
   });
