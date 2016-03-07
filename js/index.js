@@ -45,7 +45,7 @@ $(document).ready(function() {
       $('.modal-footer').empty();
 
       $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">' + iwebsite + '</a></h4>');
-      $('#modal-body-1').append('<br><h4>Cohorts:</h4>' + icohorts + '<br><br><h4>Main Category:</h4>' + icategory + '<br><br><h4>Related Categories:</h4>' + isubcategory +'<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4>' + istatus + '<br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4>' + iregion + '<br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
+      $('#modal-body-1').append('<br><h4>Cohorts:</h4>' + icohorts + '<br><br><h4>Main Category:</h4>' + icategory + '<br><br><h4>Related Categories:</h4>' + isubcategory + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4>' + istatus + '<br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4>' + iregion + '<br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
       $('#modal-body-2').append('<br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
 
       $('#myModal').modal("show");
@@ -108,7 +108,7 @@ $(document).ready(function() {
         // Filters the cateogries
         function iscorrectcategory(kategori, subkategori, nombor) {
           for (var l = 0; l < tempfarray.length; l++) {
-            if (kategori.indexOf(tempfarray[l]) < 0  && subkategori.indexOf(tempfarray[l]) < 0) {
+            if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0) {
               return false;
               break;
             } else if (l == tempfarray.length - 1) {
@@ -211,34 +211,28 @@ $(document).ready(function() {
   }
 
   // Create categories button function
-  /* function getCategories() {
+  function getCategories() {
     $.getJSON(url, function(data) {
       var cattemp = [];
       var entry = data.feed.entry;
-      
+
       function appendCategory(category) {
-        $("#testkategori").append('<li class="button"><input type="checkbox" class="filtercheckbox" id="filter-' + category + '" />' + category + '</li>')
-        
-        var script = document.createElement("script");
-        
-        script.innerHTML = '$("#filter-' + category + ').click(function(){checkboxfilter("' + category + ',"filter-' + category + '");});'
-        
-        document.footer.appendChild(script);
+        $("#mainkategories").append('<li class="button"><input type="checkbox" class="filtercheckbox" id="filter-' + category + '" />' + category + '</li>')
       }
-      
+
       for (var i = 0; i < entry.length; i++) {
         var icategory = entry[i].gsx$category.$t;
-        
+
         if (cattemp.indexOf(icategory) < 0) {
           cattemp.push(icategory);
           appendCategory(icategory);
         }
       }
     });
-  } */
-  
+  }
+
   // Generate the Initial Data
-  // getCategories();
+  getCategories();
   getData();
 
   // Links the title of the Iniative to its profile page
@@ -246,7 +240,7 @@ $(document).ready(function() {
     var id = $(this).attr("id");
     getModal(id);
   });
-  
+
   // These are the buttons function
   // Always Lucky - Random list generator
   $('#filter-random').click(function() {
@@ -311,49 +305,11 @@ $(document).ready(function() {
     }
   }
 
-  // Subject Specific
-  $('#filter-subject-specific').click(function() {
-    checkboxfilter("Subject Specific", "filter-subject-specific");
-  });
-
-  // Teaching Quality
-  $('#filter-teaching-quality').click(function() {
-    checkboxfilter("Teaching Quality", "filter-teaching-quality");
-  });
-
-  // Personal Development
-  $('#filter-development').click(function() {
-    checkboxfilter("Development", "filter-development");
-  });
-
-  // English Oral Profiency
-  $('#filter-english-oral-fluency').click(function() {
-    checkboxfilter("English Oral Fluency", "filter-english-oral-fluency");
-  });
-
-  // Literacy 
-  $('#filter-literacy').click(function() {
-    checkboxfilter("Literacy", "filter-literacy");
-  });
-
-  // Numeracy
-  $("#filter-numeracy").click(function() {
-    checkboxfilter("Numeracy", "filter-numeracy");
-  });
-
-  // Tertiary Education
-  $("#filter-tertiary-education").click(function() {
-    checkboxfilter("Tertiary Education", "filter-tertiary-education");
-  });
-
-  // Learning Environment
-  $("#filter-learning-environment").click(function() {
-    checkboxfilter("Learning Environment", "filter-learning-environment");
-  });
-
-  // Participation
-  $("#filter-participation").click(function() {
-    checkboxfilter("Participation", "filter-participation");
+  $('#mainkategories').delegate(".filtercheckbox", "click", function() {
+    var id = $(this).attr("id");
+    var categoryp = $(this).attr("id").replace('filter-', '');
+    
+    checkboxfilter(categoryp, id);
   });
 
   // North
