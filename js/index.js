@@ -55,7 +55,7 @@ $(document).ready(function() {
 
   // Append Data
   function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
-    $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '</span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Categories: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
+    $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '</span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Main Category: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
