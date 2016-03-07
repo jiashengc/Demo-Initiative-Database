@@ -222,7 +222,7 @@ input:focus {
 .button {
   color: #e6e6e6;
   margin-right: 5px;
-  padding: 5px 10px;
+  padding: 5px;
   border-radius: 10px;
   border: solid 1px #666;
   display: block;
@@ -233,6 +233,10 @@ input:focus {
 .button:hover {
   background-color: rgba(255, 255, 255, 0.05);
   cursor: pointer;
+}
+
+.sort-by input {
+    margin-right: 8px;
 }
 
 table {
@@ -762,6 +766,7 @@ a {
 }
 
 .searched {
+    font-size: 15px;
   color: #333333;
   padding: 5px;
   margin-right: 10px;
@@ -858,4 +863,24 @@ DEFECTIVE SECTION
   margin: auto;
   width: 60%;
   padding: 10px;
+}
+
+.defective-container .button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.defective-container h5 {
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 750px) {
+    .defective-container .button {
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+    
+    .defective-container h5 {
+        margin-top: 30px;
+    }
 }
