@@ -140,7 +140,7 @@ $(document).ready(function() {
   // Individual Filter Buttons
   function idvfilterData(filteredword, type) {
     $('input[class=filtercheckbox]').attr('checked', false);
-        $('input[id=maincategoryonly]').attr('checked', false);
+    $('input[id=maincategoryonly]').attr('checked', false);
     tempfarray = [];
 
     $.getJSON(url, function(data) {
@@ -165,11 +165,16 @@ $(document).ready(function() {
           if (iregion.indexOf(filteredword) >= 0) {
             appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
           }
-        } else if (type = "status") {
+        } else if (type == "status") {
           if (filteredword == istatus) {
             appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
           }
-        };
+        } else if (type == "cohort") {
+          if (icohorts.indexOf(filteredword) >= 0) {
+            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
+          }
+        }
+        
       };
     });
   }
@@ -245,8 +250,40 @@ $(document).ready(function() {
     });
   }
 
+  // Create the cohort button function
+  function getCohort() {
+    $.getJSON(url, function(data) {
+      var cohortemp = [];
+      var entry = data.feed.entry;
+
+      function appendCohort(cohort) {
+        $("#filter-cohort").append('<li class="button" id="filter-' + cohort + '">' + cohort + '</li>');
+      }
+
+      // Go through all the cohorts
+      for (var i = 0; i < entry.length; i++) {
+        var icohorts = entry[i].gsx$cohorts.$t;
+
+        if (cohortemp.indexOf(icohorts) < 0) {
+          cohortemp.push(icohorts);
+        }
+      }
+
+      // Sort by Ascending order
+      cohortemp.sort(function(a, b) {
+        return b - a
+      })
+
+      // Append the Cohorts
+      for (var i = 0; i < cohortemp.length; i++) {
+        appendCohort(cohortemp[i]);
+      }
+    });
+  }
+
   // Generate the Initial Data
   getCategories();
+  getCohort();
   getData();
 
   // Links the title of the Iniative to its profile page
@@ -260,7 +297,7 @@ $(document).ready(function() {
   $('#filter-random').click(function() {
     $.getJSON(url, function(data) {
       $('input[class=filtercheckbox]').attr('checked', false);
-          $('input[id=maincategoryonly]').attr('checked', false);
+      $('input[id=maincategoryonly]').attr('checked', false);
       tempfarray = [];
 
       var entry = data.feed.entry;
@@ -328,12 +365,20 @@ $(document).ready(function() {
     checkboxfilter(categoryp, id);
   });
 
+  // Main Category Only button
   $('#maincategoryonly').click(function() {
     if (tempfarray.length > 0) {
       filterData();
     }
   });
-  
+
+  // Cohorts filter
+  $('#filter-cohort').delegate(".button", "click", function() {
+    var filteredword = $(this).attr("id").replace('filter-', '');
+
+    idvfilterData(filteredword, "cohort");
+  });
+
   // North
   $("#filter-north").click(function() {
     idvfilterData("North", "region");
