@@ -823,6 +823,10 @@ a:hover {
   background-color: #404040;
 }
 
+.modal-body h4 {
+    font-size: 20px;
+}
+
 .modal-footer {
   background-color: #404040;
 }
