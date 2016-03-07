@@ -579,6 +579,10 @@ h1 {
   clear: both;
 }
 
+#mainkategories .button {
+  margin-bottom: 10px;
+}
+
 #contacts input {
   font-size: 13px;
   margin: 0;
