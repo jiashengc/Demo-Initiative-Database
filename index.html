@@ -21,21 +21,25 @@
   <!-- This is the popup modal don't touch it-->
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-4"><div id="modal-body-1"></div></div>
-        <div class="col-md-8"><div id="modal-body-2"></div></div>
-      </div>
-      <div class="modal-footer">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-4">
+            <div id="modal-body-1"></div>
+          </div>
+          <div class="col-md-8">
+            <div id="modal-body-2"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
       </div>
     </div>
   </div>
-</div>
   <!-- The above is the popp modal don't touch it -->
 
 
@@ -54,17 +58,23 @@
       <br><br><br>
 
       <h5>Status:</h5>
-      <ul class="sort-by">
+      <ul class="sort-by filter-status">
         <li class="button" id="filter-active">Active</li>
         <li class="button" id="filter-inactive">Inactive</li>
       </ul>
       <br><br><br>
 
       <h5>Resources:</h5>
-      <ul class="sort-by">
+      <ul class="sort-by filter-resources">
         <li class="button" id="filter-notwat">Wat resources</li>
         <li class="button" id="filter-wat">Mmmm?</li>
       </ul>
+      <br><br><br>
+
+      <h5>Cohort:</h5>
+      <ul class="sort-by filter-cohort">
+        <!-- To be filled up in the near future -->
+        <ul>
 
     </div>
   </div>
@@ -103,19 +113,20 @@
               <!-- Filter Buttons-->
               <!-- Do not touch unless you're adding another filter -->
 
-              <ul class="sort-by">
+              <ul class="sort-by" id="mainkategories">
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-subject-specific" />Subject Specific</li>
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-teaching-quality" />Teaching Quality</li>
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-development" />Career / Personal Development</li>
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-english-oral-fluency" />English Oral Fluency</li>
-              </ul>
-
-              <ul class="sort-by">
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-literacy" />Literacy</li>
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-numeracy" />Numeracy</li>
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-tertiary-education" />Tertiary Education</li>
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-learning-environment" />Learning Environment</li>
                 <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-participation" />Participation</li>
+              </ul>
+
+              <ul class="sort-by" id="testkategori">
+
               </ul>
 
               <div class="fixed-list-container">
@@ -163,6 +174,9 @@
 
 
   <script src="js/index.js"></script>
+
+  <footer>
+  </footer>
 
 </body>
 
