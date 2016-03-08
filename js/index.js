@@ -45,7 +45,7 @@ $(document).ready(function() {
       $('.modal-footer').empty();
 
       $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">' + iwebsite + '</a></h4>');
-      $('#modal-body-1').append('<br><h4>Cohorts:</h4>' + icohorts + '<br><br><h4>Main Category:</h4>' + icategory + '<br><br><h4>Related Categories:</h4>' + isubcategory + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4>' + istatus + '<br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4>' + iregion + '<br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
+      $('#modal-body-1').append('<br><h4>Cohorts:</h4><span class="modal-filter" id="modal-category-' + icohorts + '">' + icohorts + '</span><br><br><h4>Main Category:</h4><span class="modal-filter" id="modal-category-' + icategory + '">' + icategory + '</span><br><br><h4>Related Categories:</h4>' + isubcategory + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4><span class="modal-filter" id="modal-status-' + istatus + '">' + istatus + '</span><br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4><span class="modal-filter" id="modal-region-' + iregion + '">' + iregion + '</span><br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
       $('#modal-body-2').append('<br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
 
       $('#myModal').modal("show");
@@ -174,7 +174,7 @@ $(document).ready(function() {
             appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
           }
         }
-        
+
       };
     });
   }
@@ -300,6 +300,14 @@ $(document).ready(function() {
       $('input[id=maincategoryonly]').attr('checked', false);
       tempfarray = [];
 
+      // Just for fun random
+      $('#filter-random').empty();
+      var randomlucky = ["Always Lucky", "Sometimes Lucky", "Never Lucky"];
+      var rl = Math.floor(Math.random() * (randomlucky.length + 0)) + 0;
+      $('#filter-random').append(randomlucky[rl]);
+      
+      
+      // The real random number
       var entry = data.feed.entry;
       var max = entry.length;
       var min = 0;
@@ -375,8 +383,12 @@ $(document).ready(function() {
   // Cohorts filter
   $('#filter-cohort').delegate(".button", "click", function() {
     var filteredword = $(this).attr("id").replace('filter-', '');
-
     idvfilterData(filteredword, "cohort");
+  });
+
+  // Modal filters
+  $('#modal-body-2').delegate(".modal-filter", "click", function() {
+    $('#myModal').modal("hide");
   });
 
   // North
