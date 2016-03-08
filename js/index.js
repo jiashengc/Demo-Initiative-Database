@@ -302,7 +302,7 @@ $(document).ready(function() {
 
       // Just for fun random
       $('#filter-random').empty();
-      var randomlucky = ["Always Lucky", "Sometimes Lucky", "Never Lucky"];
+      var randomlucky = ["Always Lucky!", "Sometimes Lucky!", "Never Lucky!"];
       var rl = Math.floor(Math.random() * (randomlucky.length + 0)) + 0;
       $('#filter-random').append(randomlucky[rl]);
       
