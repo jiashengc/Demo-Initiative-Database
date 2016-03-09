@@ -4,8 +4,9 @@ $(document).ready(function() {
    * LOVELY INITIATIVES
    */
 
-  // Initialize a temp array
+  // Initialize some variables
   var tempfarray = [];
+  var pagenom = 1;
 
   // ID of the Google Spreadsheet
   var spreadsheetID = "13-ozrkaBha3CQIwP9J_FuEF3hnQpXYrKzVxNqS0Hzoo";
@@ -44,7 +45,7 @@ $(document).ready(function() {
       $('#modal-body-2').empty();
       $('.modal-footer').empty();
 
-      $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">' + iwebsite + '</a></h4>');
+      $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">Official Website</a></h4>');
       $('#modal-body-1').append('<br><h4>Cohorts:</h4><span class="modal-filter" id="modal-category-' + icohorts + '">' + icohorts + '</span><br><br><h4>Main Category:</h4><span class="modal-filter" id="modal-category-' + icategory + '">' + icategory + '</span><br><br><h4>Related Categories:</h4>' + isubcategory + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4><span class="modal-filter" id="modal-status-' + istatus + '">' + istatus + '</span><br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4><span class="modal-filter" id="modal-region-' + iregion + '">' + iregion + '</span><br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
       $('#modal-body-2').append('<br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
 
@@ -55,7 +56,7 @@ $(document).ready(function() {
 
   // Append Data
   function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
-    $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '</span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Main Category: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
+      $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '</span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Main Category: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -106,11 +107,11 @@ $(document).ready(function() {
         var icohorts = entry[i].gsx$cohorts.$t;
 
         // Filters the cateogries
-        function iscorrectcategory(kategori, subkategori, nombor) {
+        function iscorrectcategory(kategori, subkategori, region, status, nombor) {
           // Checks if Main Category Only is checked
           if (document.getElementById("maincategoryonly").checked) {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
@@ -120,7 +121,7 @@ $(document).ready(function() {
             }
           } else {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
@@ -131,7 +132,7 @@ $(document).ready(function() {
           }
         };
 
-        iscorrectcategory(icategory, isubcategory, i);
+        iscorrectcategory(icategory, isubcategory, iregion, istatus, i);
 
       };
     });
@@ -305,8 +306,7 @@ $(document).ready(function() {
       var randomlucky = ["Always Lucky!", "Sometimes Lucky!", "Never Lucky!"];
       var rl = Math.floor(Math.random() * (randomlucky.length + 0)) + 0;
       $('#filter-random').append(randomlucky[rl]);
-      
-      
+
       // The real random number
       var entry = data.feed.entry;
       var max = entry.length;
@@ -386,39 +386,52 @@ $(document).ready(function() {
     idvfilterData(filteredword, "cohort");
   });
 
-  // Modal filters
-  $('#modal-body-2').delegate(".modal-filter", "click", function() {
-    $('#myModal').modal("hide");
-  });
-
   // North
   $("#filter-north").click(function() {
-    idvfilterData("North", "region");
+    var id = $(this).attr("id");
+    var categoryp = "North"
+
+    checkboxfilter(categoryp, id);
   });
 
   // South
   $("#filter-east").click(function() {
-    idvfilterData("East", "region");
+    var id = $(this).attr("id");
+    var categoryp = "East"
+
+    checkboxfilter(categoryp, id);
   });
 
   // West
   $("#filter-west").click(function() {
-    idvfilterData("West", "region");
+    var id = $(this).attr("id");
+    var categoryp = "West"
+
+    checkboxfilter(categoryp, id);
   });
 
   // South
   $("#filter-south").click(function() {
-    idvfilterData("South", "region");
+    var id = $(this).attr("id");
+    var categoryp = "South"
+
+    checkboxfilter(categoryp, id);
   });
 
   // Active
   $("#filter-active").click(function() {
-    idvfilterData("Active", "status");
+    var id = $(this).attr("id");
+    var categoryp = "Active"
+
+    checkboxfilter(categoryp, id);
   });
 
   // Inactive
   $("#filter-inactive").click(function() {
-    idvfilterData("Inactive", "status");
+    var id = $(this).attr("id");
+    var categoryp = "Inactive"
+
+    checkboxfilter(categoryp, id);
   });
 
   // wat
