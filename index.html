@@ -43,24 +43,24 @@
   <!-- The above is the popp modal don't touch it -->
 
 
-  <div class="col-md-4">
+  <div class="col-md-3">
     <div class="defective-top"></div>
     <div class="defective-container">
 
       <h5>Region:</h5>
       <ul class="sort-by">
-        <li class="button" id="filter-north">North</li>
-        <li class="button" id="filter-east">East</li>
-        <li class="button" id="filter-west">West</li>
-        <li class="button" id="filter-south">South
+        <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-north" />North</li>
+        <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-east" />East</li>
+        <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-west" />West</li>
+        <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-south" />South
           <li>
       </ul>
-      <br><br><br>
+      <br><br><br><br><br>
 
       <h5>Status:</h5>
       <ul class="sort-by filter-status">
-        <li class="button" id="filter-active">Active</li>
-        <li class="button" id="filter-inactive">Inactive</li>
+        <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-active" />Active</li>
+        <li class="button"><input type="checkbox" class="filtercheckbox" id="filter-inactive" />Inactive</li>
       </ul>
       <br><br><br>
 
@@ -107,37 +107,21 @@
               <!-- Do not touch unless you're adding another filter -->
 
               <ul class="sort-by" id="mainkategories">
-
+                <!-- Where the categories will go-->
               </ul>
-
+              <p class="filter-notes">* Select the "Main Category Only" checkbox to filter for main categories only.</p>
               <div class="fixed-list-container">
                 <ul class="list">
 
                   <!-- This is the part where JSON will place the initiatives -->
 
-                  <!-- You may insert your custom initiaitve below here-->
-
-                  <!-- List Example -->
-                  <!-- You may copy and pasta from within the triple asterisk -->
-                  <!-- If you want to add a custom initiative, copy the format below 
-        
-        ***
-        <li>
-          <h4>
-          <a href="*Website Link"><img src="*Image Link" class="thumb" /></a>
-          <span class="name"><a href="*Website Link">*Name of Initiative</a></span>
-          <span class="category">(*Category of Initiative)</span>
-          </h4>
-          <p class="description">*Description of Initiative</p>
-        </li>
-        ***
-        -->
-
-                  <!-- End of List -->
-                  <!-- PLEASE Do not edit beyond this -->
-
                 </ul>
               </div>
+              <nav>
+                <ul class="pagination">
+                  <!-- Where the pages will go -->
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
