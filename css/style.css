@@ -1,6 +1,5 @@
 /* WARNING: This css extreamly unorganized, go away :) */
 
-
 body,
 div,
 dl,
@@ -369,7 +368,7 @@ h1 {
 }
 
 #lovely-things-list .list li:nth-child(2n+1) {
-  background-color: #dcddde;
+  background-color: rgba(0, 0, 0, 0.1);
   border: solid 1px rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
@@ -547,6 +546,11 @@ MODAL
 
 .modal-filter {
   cursor: pointer;
+}
+
+.modal-thumb {
+  margin: 15px;
+  border: 1px solid #58595b;
 }
 
 .listid {
