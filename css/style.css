@@ -1,5 +1,6 @@
 /* WARNING: This css extreamly unorganized, go away :) */
 
+
 body,
 div,
 dl,
@@ -25,11 +26,13 @@ th,
 td {
   margin: 0;
   padding: 0;
-  color: #e6e6e6;
+  color: black;
 }
 
 body {
-  background-color: #333333 !important;
+  background-color: white;
+  background-image: url("http://i.imgur.com/QTV3nFk.png") !important;
+  background-size: contain !important;
 }
 
 table {
@@ -115,7 +118,7 @@ body {
   background: #333;
   font: normal 14px/1.3 'helvetica neue', helvetica, arial;
   color: #bbb;
-  text-shadow: #262729 0 -1px 0;
+  text-shadow: #939598 0 -1px 0;
   -webkit-font-smoothing: antialiased;
   padding: 120px 0;
 }
@@ -136,7 +139,7 @@ header {
 }
 
 #thecontainer a {
-  color: #eee;
+  color: black;
 }
 
 #thecontainer a:hover {
@@ -195,7 +198,7 @@ h2 strong {
 
 h3 {
   font-size: 14px;
-  color: #3a3a3a;
+  color: black;
   margin-bottom: 8px;
 }
 
@@ -207,6 +210,7 @@ input {
   float: left;
   margin-right: 10px;
   margin-bottom: 15px;
+  color: black;
 }
 
 input:focus {
@@ -220,11 +224,11 @@ input:focus {
 }
 
 .button {
-  color: #e6e6e6;
+  color: black;
   margin-right: 5px;
   padding: 5px;
   border-radius: 10px;
-  border: solid 1px #666;
+  border: solid 1px #58595b;
   display: block;
   float: left;
   background-color: rgba(0, 0, 0, 0.1);
@@ -233,6 +237,27 @@ input:focus {
 .button:hover {
   background-color: rgba(255, 255, 255, 0.05);
   cursor: pointer;
+}
+
+.defective-container .button {
+  color: white;
+  margin-right: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: solid 1px #58595b;
+  display: block;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.defective-container .button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.defective-container h5 {
+  margin-top: 10px;
+  color: white;
 }
 
 .sort-by input {
@@ -291,7 +316,7 @@ div.info {
 
 #example-list li {
   font-size: 20px;
-  color: #cecece;
+  color: black;
   text-shadow: #262729 0 -1px 0;
   font-weight: 300;
   border-top: solid 1px #666;
@@ -314,7 +339,7 @@ div.info {
 h1 {
   font: 100 40px "helvetica neue", helvetica, arial;
   letter-spacing: 1px;
-  color: #cecece;
+  color: black;
   text-align: center;
   margin-bottom: 20px;
   text-shadow: #262729 0 -1px 0;
@@ -344,7 +369,7 @@ h1 {
 }
 
 #lovely-things-list .list li:nth-child(2n+1) {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #dcddde;
   border: solid 1px rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
@@ -354,14 +379,14 @@ h1 {
 }
 
 #lovely-things-list h4 {
-  color: #fafafa;
+  color: black;
   font-weight: bold;
   margin-bottom: 6px;
 }
 
 #lovely-things-list p {
   font: normal 14px/1.3 'helvetica neue', helvetica, arial;
-  color: #aaa;
+  color: black;
   text-align: left;
 }
 
@@ -410,28 +435,28 @@ code {
 }
 
 pre .keyword {
-  color: #FF0C4B;
+  color: black;
 }
 
 pre .string {
-  color: #01DBFF;
+  color: black;
 }
 
 pre .regexp {
-  color: #15E80B;
+  color: black;
 }
 
 pre .class {
-  color: #15E80B;
+  color: black;
   font-weight: bold;
 }
 
 pre .special {
-  color: #FFD901;
+  color: black;
 }
 
 pre .number {
-  color: #01DBFF;
+  color: black;
 }
 
 pre .comment {
@@ -444,24 +469,16 @@ a {
 }
 
 .searched {
-    font-size: 15px;
-  color: #333333;
+  font-size: 15px;
+  color: #58595b;
   padding: 5px;
   margin-right: 10px;
-}
-
-.tfmlogo {
-  display: block;
-  margin: 0 auto;
-  padding-bottom: 10px;
 }
 
 .filtercheckbox {
   margin-top: 3px;
   margin-bottom: -15px;
 }
-
-.fixed-list-container {}
 
 a:hover {
   text-decoration: none !important;
@@ -476,52 +493,56 @@ a:hover {
   font-size: 13px;
 }
 
-.tfmwebsite {
-  text-align: center;
-  padding: 10px;
-}
-
 .name {
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  color: #b01116;
 }
 
-.model-content {
-  background-color: #404040;
+/* 
+MODAL
+*/
+
+.modal-dialog {
+  background-color: white;
+  border: 1px #b01116;
 }
 
 .modal-header {
   text-align: center;
-  background-color: #404040;
+  background-color: white;
   padding: 10px;
 }
 
 .modal-title {
   font-size: 34px;
-  color: #e6e6e6;
+  color: #b01116;
 }
 
 .modal-body {
-  background-color: #404040;
+  background-color: white;
+  color: #58595b;
 }
 
 .modal-body h4 {
-    font-size: 20px;
+  font-size: 20px;
+  color: #58595b;
 }
 
 .modal-footer {
-  background-color: #404040;
+  background-color: white;
+  color: black;
 }
 
 .modal-website {
   font-size: 20px !important;
-  color: #e6e6e6 !important;
+  color: #58595b !important;
   text-decoration: none !important;
 }
 
 .modal-website:hover {
-  color: white !important;
+  color: black !important;
 }
 
 .modal-filter {
@@ -536,8 +557,12 @@ a:hover {
 DEFECTIVE SECTION
 */
 
+
 .defective-top {
-  margin-top: 190px;
+  padding-top: 190px;
+  width: 60%;
+  float: center;
+  margin: auto;
 }
 
 .defective-container {
@@ -545,11 +570,12 @@ DEFECTIVE SECTION
   margin: auto;
   width: 60%;
   padding: 10px;
+  padding-bottom: 1790px;
 }
 
 .defective-container .button {
-    margin-top: 5px;
-    margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .defective-container h5 {
@@ -565,4 +591,9 @@ DEFECTIVE SECTION
     .defective-container h5 {
         margin-top: 30px;
     }
+}
+
+.filter-notes {
+  color: #58595b;
+  margin-bottom: 17px !important;
 }
