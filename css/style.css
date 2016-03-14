@@ -1,6 +1,3 @@
-/* WARNING: This css extreamly unorganized, go away :) */
-
-
 body,
 div,
 dl,
@@ -258,6 +255,10 @@ input:focus {
 .defective-container h5 {
   margin-top: 10px;
   color: white;
+}
+
+.defective-container .sort-by {
+  padding: 10px;
 }
 
 .sort-by input {
