@@ -279,7 +279,8 @@ input:focus {
 .defective-container h5 {
   margin-top: 10px;
   color: white;
-  text-shadow: 1px 1px black;
+  text-shadow: 0px 1px 3px black;
+  font-weight: bold;
 }
 
 .defective-container .sort-by {
@@ -287,7 +288,7 @@ input:focus {
 }
 
 .sort-by input {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 table {
@@ -403,7 +404,6 @@ h1 {
 #lovely-things-list li:nth-child(2n+1) .thumb {
   border: solid 1px #666;
 }
-
 
 #lovely-things-list h4 {
   color: black;
@@ -528,6 +528,7 @@ a:hover {
   color: #b01116;
 }
 
+
 /* 
 MODAL
 */
@@ -586,10 +587,10 @@ MODAL
   opacity: 0.0;
 }
 
+
 /* 
 DEFECTIVE SECTION
 */
-
 
 .defective-top {
   padding-top: 190px;
@@ -612,18 +613,18 @@ DEFECTIVE SECTION
 }
 
 .defective-container h5 {
-    margin-top: 30px;
+  margin-top: 30px;
+  f
 }
 
 @media screen and (max-width: 750px) {
-    .defective-container .button {
-        margin-right: 10px;
-        margin-top: 10px;
-    }
-    
-    .defective-container h5 {
-        margin-top: 30px;
-    }
+  .defective-container .button {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .defective-container h5 {
+    margin-top: 30px;
+  }
 }
 
 .filter-notes {
