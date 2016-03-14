@@ -33,6 +33,13 @@ body {
   background-repeat: repeat-y !important;
 }
 
+@media screen and (max-width: 690px) {
+  body {
+    background-image: url("http://i.imgur.com/zzGBIT4.png") !important;
+    background-repeat: repeat-y !important;
+  }
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -616,16 +623,6 @@ DEFECTIVE SECTION
 .defective-container h5 {
   margin-top: 30px;
   f
-}
-
-@media screen and (max-width: 750px) {
-  .defective-container .button {
-    margin-right: 10px;
-    margin-top: 10px;
-  }
-  .defective-container h5 {
-    margin-top: 30px;
-  }
 }
 
 .filter-notes {
