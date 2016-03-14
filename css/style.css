@@ -221,7 +221,7 @@ input:focus {
 }
 
 .button {
-  color: #1a1a1a;
+  color: #b01116;
   margin-right: 5px;
   padding: 5px;
   border-radius: 10px;
@@ -229,11 +229,33 @@ input:focus {
   display: block;
   float: left;
   background-color: rgba(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 1px #b3b3b3;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: bold;
 }
 
 .button:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
   cursor: pointer;
+}
+
+#add-initiative {
+  color: white;
+  background-color: #b01116;
+  text-shadow: 0 1px 2px #1a1a1a;
+  font-weight: bold;
+}
+
+.primary-button {
+  color: white;
+  background-color: #737373;
+  text-shadow: 0 1px 1px #1a1a1a;
+  font-weight: bold;
+}
+
+.primary-button:hover {
+  background-color: #808080;
 }
 
 .defective-container .button {
@@ -245,6 +267,7 @@ input:focus {
   display: block;
   float: left;
   background-color: rgba(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 1px black;
 }
 
 .defective-container .button:hover {
@@ -255,6 +278,7 @@ input:focus {
 .defective-container h5 {
   margin-top: 10px;
   color: white;
+  text-shadow: 1px 1px black;
 }
 
 .defective-container .sort-by {
