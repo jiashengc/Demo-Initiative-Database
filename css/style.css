@@ -35,7 +35,8 @@ body {
 
 @media screen and (max-width: 690px) {
   body {
-    background-size: cover !important;
+    background-size: contain !important;
+    background-repeat: repeat-x repeat-y;
   }
 }
 
