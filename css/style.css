@@ -144,7 +144,7 @@ header {
 }
 
 .c1 {
-  width: 900px;
+  width: 1000px;
   float: left;
 }
 
@@ -223,13 +223,14 @@ input:focus {
 .button {
   color: #b01116;
   margin-right: 5px;
+  margin-top: 3px;
   padding: 5px;
   border-radius: 10px;
   border: solid 1px #d4d4d4;
   display: block;
   float: left;
   background-color: rgba(0, 0, 0, 0.1);
-  text-shadow: 1px 1px 1px #b3b3b3;
+  text-shadow: 1px 1px 3px #b3b3b3;
   padding-left: 15px;
   padding-right: 15px;
   font-weight: bold;
@@ -243,14 +244,14 @@ input:focus {
 #add-initiative {
   color: white;
   background-color: #b01116;
-  text-shadow: 0 1px 2px #1a1a1a;
+  text-shadow: 0 1px 3px #1a1a1a;
   font-weight: bold;
 }
 
 .primary-button {
   color: white;
   background-color: #737373;
-  text-shadow: 0 1px 1px #1a1a1a;
+  text-shadow: 0 1px 3px #4d4d4d;
   font-weight: bold;
 }
 
@@ -402,6 +403,7 @@ h1 {
 #lovely-things-list li:nth-child(2n+1) .thumb {
   border: solid 1px #666;
 }
+
 
 #lovely-things-list h4 {
   color: black;
