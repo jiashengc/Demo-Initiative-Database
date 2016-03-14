@@ -28,7 +28,7 @@ td {
 
 body {
   background-color: white;
-  background-image: url("http://i.imgur.com/QTV3nFk.png") !important;
+  background-image: url("http://i.imgur.com/7M48i1w.png") !important;
   background-size: contain !important;
 }
 
@@ -221,11 +221,11 @@ input:focus {
 }
 
 .button {
-  color: black;
+  color: #1a1a1a;
   margin-right: 5px;
   padding: 5px;
   border-radius: 10px;
-  border: solid 1px #58595b;
+  border: solid 1px #d4d4d4;
   display: block;
   float: left;
   background-color: rgba(0, 0, 0, 0.1);
@@ -573,11 +573,11 @@ DEFECTIVE SECTION
 }
 
 .defective-container {
-  float: center;
+  float: left;
   margin: auto;
-  width: 60%;
+  width: 70%;
   padding: 10px;
-  padding-bottom: 1790px;
+  margin-left: 16px;
 }
 
 .defective-container .button {
