@@ -144,7 +144,7 @@ header {
 }
 
 .c1 {
-  width: 750px;
+  width: 900px;
   float: left;
 }
 
@@ -609,4 +609,20 @@ DEFECTIVE SECTION
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+}
+
+.initiative-bar .initiative-title {
+  float: left;
+}
+
+.description {
+  line-height: 200%;
+}
+
+.breaker {
+  padding: 4px;
+}
+
+side-breaker {
+  margin-left: 10px;
 }
