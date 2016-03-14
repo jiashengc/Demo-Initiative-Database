@@ -45,9 +45,9 @@ $(document).ready(function() {
       $('#modal-body-2').empty();
       $('.modal-footer').empty();
 
-      $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">Official Website</a></h4>');
-      $('#modal-body-1').append('<br><h4>Cohorts:</h4><span class="modal-filter" id="modal-category-' + icohorts + '">' + icohorts + '</span><br><br><h4>Main Category:</h4><span class="modal-filter" id="modal-category-' + icategory + '">' + icategory + '</span><br><br><h4>Related Categories:</h4>' + isubcategory + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4><span class="modal-filter" id="modal-status-' + istatus + '">' + istatus + '</span><br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4><span class="modal-filter" id="modal-region-' + iregion + '">' + iregion + '</span><br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
-      $('#modal-body-2').append('<br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
+      $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb modal-thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">Official Website</a></h4>');
+      $('#modal-body-1').append('<br><br><h4>Cohorts:</h4><span class="modal-filter" id="modal-category-' + icohorts + '">' + icohorts + '</span><br><br><h4>Main Category:</h4><span class="modal-filter" id="modal-category-' + icategory + '">' + icategory + '</span><br><br><h4>Related Categories:</h4>' + isubcategory + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4><span class="modal-filter" id="modal-status-' + istatus + '">' + istatus + '</span><br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4><span class="modal-filter" id="modal-region-' + iregion + '">' + iregion + '</span><br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
+      $('#modal-body-2').append('<br><br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
 
       $('#myModal').modal("show");
 
@@ -56,7 +56,11 @@ $(document).ready(function() {
 
   // Append Data
   function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
-      $('.list').append('<li><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '</span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><h5 class="category">Main Category: ' + icategory + '<br><br><br><p class="description">' + idescription + '</p></li>');
+    if ( $('.fixed-list-container ul li').length == 0 ) {
+      $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-9 col-xs-9"><span>Initiative</span></div><div class="col-ms-3 col-xs-3"><span>Category</span></div></div>')
+    }
+    
+      $('.list').append('<li><div class="row"><div class="col-ms-9 col-xs-9"><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '</span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><br><br><br><p class="description">' + idescription + '</p></div><div class="col-ms-3 col-xs-3"><h5 class="category">' + icategory + '</h5></div></div></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
