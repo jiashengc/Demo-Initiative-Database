@@ -33,6 +33,12 @@ body {
   background-repeat: repeat-y !important;
 }
 
+@media screen and (max-width: 690px) {
+  body {
+    background-size: cover !important;
+  }
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
