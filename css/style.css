@@ -29,8 +29,7 @@ td {
 body {
   background-color: white;
   background-image: url("http://i.imgur.com/7M48i1w.png") !important;
-  background-size: contain !important;
-  background-repeat: repeat-y !important;
+  background-size: contain;
 }
 
 table {
@@ -113,7 +112,6 @@ html[xmlns] .clearfix {
 * * * * * * * * * * * * * * * * * * * * */
 
 body {
-  background: #333;
   font: normal 14px/1.3 'helvetica neue', helvetica, arial;
   color: #bbb;
   text-shadow: #939598 0 -1px 0;
@@ -606,6 +604,7 @@ DEFECTIVE SECTION
   width: 70%;
   padding: 10px;
   margin-left: 16px;
+  padding-bottom: 200px;
 }
 
 .defective-container .button {
@@ -615,7 +614,6 @@ DEFECTIVE SECTION
 
 .defective-container h5 {
   margin-top: 30px;
-  f
 }
 
 .filter-notes {
