@@ -30,6 +30,7 @@ body {
   background-color: white;
   background-image: url("http://i.imgur.com/7M48i1w.png") !important;
   background-size: contain;
+  background-repeat: repeat-y;
 }
 
 table {
