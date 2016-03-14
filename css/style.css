@@ -1,5 +1,6 @@
 /* WARNING: This css extreamly unorganized, go away :) */
 
+
 body,
 div,
 dl,
@@ -488,8 +489,9 @@ a:hover {
 }
 
 .category {
-  margin-top: 10px;
-  font-size: 13px;
+  margin-top: 15px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .name {
@@ -600,4 +602,10 @@ DEFECTIVE SECTION
 .filter-notes {
   color: #58595b;
   margin-bottom: 17px !important;
+}
+
+.initiative-bar {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
 }
