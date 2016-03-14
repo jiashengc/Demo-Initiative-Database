@@ -111,13 +111,14 @@ $(document).ready(function() {
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
         var icohorts = entry[i].gsx$cohorts.$t;
+        var iresources = entry[i].gsx$resources.$t;
 
         // Filters the cateogries
-        function iscorrectcategory(kategori, subkategori, region, status, nombor) {
+        function iscorrectcategory(kategori, subkategori, region, status, nombor, resources) {
           // Checks if Main Category Only is checked
           if (document.getElementById("maincategoryonly").checked) {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0 && resources.indexOf(tempfarray[l] < 0)) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
@@ -138,7 +139,7 @@ $(document).ready(function() {
           }
         };
 
-        iscorrectcategory(icategory, isubcategory, iregion, istatus, i);
+        iscorrectcategory(icategory, isubcategory, iregion, istatus, i, iresources);
 
       };
     });
@@ -167,6 +168,7 @@ $(document).ready(function() {
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
         var icohorts = entry[i].gsx$cohorts.$t;
+        var iresources = entry[i].gsx$resources.$t;
 
         if (type == "region") {
           if (iregion.indexOf(filteredword) >= 0) {
@@ -178,6 +180,10 @@ $(document).ready(function() {
           }
         } else if (type == "cohort") {
           if (icohorts.indexOf(filteredword) >= 0) {
+            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
+          }
+        } else if (type == "resources") {
+          if (iresources.indexOf(filteredword) >= 0) {
             appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
           }
         }
@@ -392,6 +398,8 @@ $(document).ready(function() {
     idvfilterData(filteredword, "cohort");
   });
 
+  // Resources filter;
+  
   // North
   $("#filter-north").click(function() {
     var id = $(this).attr("id");
@@ -409,9 +417,9 @@ $(document).ready(function() {
   });
 
   // West
-  $("#filter-west").click(function() {
+  $("#filter-central").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "West"
+    var categoryp = "Central"
 
     checkboxfilter(categoryp, id);
   });
@@ -439,12 +447,35 @@ $(document).ready(function() {
 
     checkboxfilter(categoryp, id);
   });
+  
+  $("#filter-training").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Training & Upskilling"
+    
+    checkboxfilter(categoryp, id);
+  });  
 
-  // wat
-  $("#filter-notwat").click(function() {
-    getModal(1);
+  $("#filter-manpower").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Manpower"
+    
+    checkboxfilter(categoryp, id);
   });
-
+  
+  $("#filter-funding").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Thought Partner"
+    
+    checkboxfilter(categoryp, id);
+  });
+  
+  $("#filter-training").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Partnership"
+    
+    checkboxfilter(categoryp, id);
+  });
+  
   // Show all
   $('#filter-none').click(function() {
     $('input[class=filtercheckbox]').attr('checked', false);
