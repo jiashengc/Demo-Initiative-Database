@@ -57,12 +57,12 @@ $(document).ready(function() {
   // Append Data
   function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
     // Append the top bar for "Initiative" & "Category"
-    if ( $('.fixed-list-container ul li').length == 0 ) {
+    if ($('.fixed-list-container ul li').length == 0) {
       $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-5 col-xs-5"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div><div class="col-ms-1 col-xs-1"><span>Cohort</span></div></div>')
     }
-    
+
     // Append the initiative that was filtered
-      $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"></div><div class="col-ms-5 col-xs-5"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
+    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"></div><div class="col-ms-5 col-xs-5"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -399,11 +399,11 @@ $(document).ready(function() {
   });
 
   // Resources filter;
-  
+
   // North
   $("#filter-north").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "North"
+    var categoryp = "North";
 
     checkboxfilter(categoryp, id);
   });
@@ -411,7 +411,7 @@ $(document).ready(function() {
   // South
   $("#filter-east").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "East"
+    var categoryp = "East";
 
     checkboxfilter(categoryp, id);
   });
@@ -419,7 +419,7 @@ $(document).ready(function() {
   // West
   $("#filter-central").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Central"
+    var categoryp = "Central";
 
     checkboxfilter(categoryp, id);
   });
@@ -427,7 +427,7 @@ $(document).ready(function() {
   // South
   $("#filter-south").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "South"
+    var categoryp = "South";
 
     checkboxfilter(categoryp, id);
   });
@@ -435,7 +435,7 @@ $(document).ready(function() {
   // Active
   $("#filter-active").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Active"
+    var categoryp = "Active";
 
     checkboxfilter(categoryp, id);
   });
@@ -443,39 +443,46 @@ $(document).ready(function() {
   // Inactive
   $("#filter-inactive").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Inactive"
+    var categoryp = "Inactive";
 
     checkboxfilter(categoryp, id);
   });
-  
+
   $("#filter-training").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Training & Upskilling"
-    
+    var categoryp = "Training & Upskilling";
+
     checkboxfilter(categoryp, id);
-  });  
+  });
 
   $("#filter-manpower").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Manpower"
-    
+    var categoryp = "Manpower";
+
     checkboxfilter(categoryp, id);
   });
-  
+
   $("#filter-funding").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Thought Partner"
-    
+    var categoryp = "Thought Partner";
+
     checkboxfilter(categoryp, id);
   });
-  
-  $("#filter-training").click(function() {
+
+  $("#filter-thought-partner").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Partnership"
-    
+    var categoryp = "Thought Partner";
+
     checkboxfilter(categoryp, id);
   });
-  
+
+  $("#filter-partnership").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Partnership";
+
+    checkboxfilter(categoryp, id);
+  });
+
   // Show all
   $('#filter-none').click(function() {
     $('input[class=filtercheckbox]').attr('checked', false);
