@@ -557,6 +557,7 @@ MODAL
 .modal-body h4 {
   font-size: 20px;
   color: #58595b;
+  padding-top: 20px;
 }
 
 .modal-footer {
@@ -574,8 +575,10 @@ MODAL
   color: black !important;
 }
 
-.modal-filter {
-  cursor: pointer;
+#modal-body-1 span,
+#modal-body-2 span {
+  padding-top: 10px;
+  line-height: 150%;
 }
 
 .modal-thumb {
