@@ -58,11 +58,11 @@ $(document).ready(function() {
   function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
     // Append the top bar for "Initiative" & "Category"
     if ( $('.fixed-list-container ul li').length == 0 ) {
-      $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-9 col-xs-9"><span>Initiative</span></div><div class="col-ms-3 col-xs-3"><span>Category</span></div></div>')
+      $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-6 col-xs-6"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div></div>')
     }
     
     // Append the initiative that was filtered
-      $('.list').append('<li><div class="row"><div class="col-ms-9 col-xs-9"><img src="' + iimage + '" class="thumb" /><span class="name" id="' + inum + '">' + ititle + '</span><span class="fellow"><br> ' + 'by ' + ifellow + '</span><br><br><br><p class="description">' + idescription + '</p></div><div class="col-ms-3 col-xs-3"><h5 class="category">' + icategory + '</h5></div></div></li>');
+      $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"></div><div class="col-ms-6 col-xs-6"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
