@@ -562,6 +562,10 @@ MODAL
   padding-top: 20px;
 }
 
+.modal-filter {
+  margin-top: 5px;
+}
+
 .modal-footer {
   background-color: white;
   color: black;
