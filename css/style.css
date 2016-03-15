@@ -116,7 +116,8 @@ html[xmlns] .clearfix {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #bbb;
+  text-shadow: 0 0 black;
+  color: black;
   -webkit-font-smoothing: antialiased;
   padding: 120px 0;
 }
