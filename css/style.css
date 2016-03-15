@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
+
 body,
 div,
 dl,
@@ -113,9 +115,8 @@ html[xmlns] .clearfix {
 * * * * * * * * * * * * * * * * * * * * */
 
 body {
-  font: normal 14px/1.3 'helvetica neue', helvetica, arial;
+  font-family: 'Open Sans', sans-serif;
   color: #bbb;
-  text-shadow: #939598 0 -1px 0;
   -webkit-font-smoothing: antialiased;
   padding: 120px 0;
 }
@@ -633,10 +634,6 @@ DEFECTIVE SECTION
 
 .initiative-bar .initiative-title {
   float: left;
-}
-
-.description {
-  line-height: 200%;
 }
 
 .breaker {
