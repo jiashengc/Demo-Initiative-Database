@@ -464,7 +464,7 @@ $(document).ready(function() {
 
   $("#filter-funding").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Thought Partner";
+    var categoryp = "Funding";
 
     checkboxfilter(categoryp, id);
   });
