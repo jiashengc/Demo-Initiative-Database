@@ -118,7 +118,7 @@ $(document).ready(function() {
           // Checks if Main Category Only is checked
           if (document.getElementById("maincategoryonly").checked) {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0 && resources.indexOf(tempfarray[l] < 0)) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0 && resources.indexOf(tempfarray[l]) < 0) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
@@ -128,7 +128,7 @@ $(document).ready(function() {
             }
           } else {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l] ) < 0 && resources.indexOf(tempfarray[l]) < 0) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
