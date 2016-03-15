@@ -204,6 +204,7 @@ $(document).ready(function() {
         var inum = i;
         var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
+        var isubcategory = entry[i].gsx$subcategory.$t;
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
@@ -223,6 +224,7 @@ $(document).ready(function() {
         searchword = searchword.toLowerCase();
         var ltitle = ititle.toLowerCase();
         var lcategory = icategory.toLowerCase();
+        var lsubcategory = isubcategory.toLowerCase();
         var ldescription = idescription.toLowerCase();
         var lstatus = istatus.toLowerCase();
         var lregion = iregion.toLowerCase();
@@ -235,7 +237,7 @@ $(document).ready(function() {
         var ldesiredoutcome = idesiredoutcome.toLowerCase();
         var limpactachieved = iimpactachieved.toLowerCase();
 
-        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0 || icohorts.indexOf(searchword) >= 0) {
+        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0 || icohorts.indexOf(searchword) >= 0 || lsubcategory.indexOf(searchword) >= 0) {
           appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
         };
       };
