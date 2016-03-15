@@ -398,8 +398,6 @@ $(document).ready(function() {
     idvfilterData(filteredword, "cohort");
   });
 
-  // Resources filter;
-
   // North
   $("#filter-north").click(function() {
     var id = $(this).attr("id");
