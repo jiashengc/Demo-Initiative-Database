@@ -33,6 +33,8 @@ body {
   background-image: url("http://i.imgur.com/7M48i1w.png") !important;
   background-size: contain !important;
   background-repeat: repeat-y !important;
+  width: 90%;
+  height: 90%;
 }
 
 table {
