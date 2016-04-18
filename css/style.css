@@ -121,9 +121,13 @@ body {
   -webkit-font-smoothing: antialiased;
   padding: 120px 0;
 }
+
 body {
-  width: 90%
-  height: 90%;
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
 }
 
 body.clearfix {
