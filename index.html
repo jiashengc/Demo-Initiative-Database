@@ -137,7 +137,54 @@
   </div>
 
   <!-- end of #container -->
-
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+   <title>Make DIV current size of viewer window</title>
+   <meta charset="utf-8" />
+   <style>
+      body {
+         margin:0;
+         padding:0;
+         background-color:#fff;
+         color:#000;
+         font:bold 20px tahoma,sans-serif;
+      }
+      #resize_wrapper {
+         background-color:#e00;
+      }
+   </style>
+   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <script>
+      function reSize(id) {
+         // @obj - get the element with the given ID
+         // @w - the current width of the viewer window
+         // @h - the current height of the viewer window
+         var obj=$('#'+id),w=$(window).width(),h=$(window).height();
+         obj.css({
+            width:w,
+            height:h
+         });
+      }
+      $(function(){
+         // @obj_id - set the ID of the element you want to resize
+         var obj_id='resize_wrapper';
+         // Call the function on page load
+         reSize(obj_id);
+         // Then create an event handler that calls the function whenever the user resizes the browser
+         $(window).resize(function(){
+            reSize(obj_id);
+         });
+      });
+   </script>
+</head>
+<body>
+   <div id="resize_wrapper">
+      This DIV will rezise to the window size dynamically... even when the user resizes the browser on their own!
+   </div>
+</body>
+</html>
+Read more at http://www.htmlcodetutorial.com/comments/viewtopic.php?f=2&t=21415#K0Fq71q5vyWiK4pt.99
   <!-- jQuery-->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
