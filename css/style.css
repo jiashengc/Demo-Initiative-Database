@@ -567,6 +567,8 @@ MODAL
 }
 
 .modal-thumb {
+  width: 70px;
+  height: 70px;
   margin: 15px;
   border: 1px solid #58595b;
 }
