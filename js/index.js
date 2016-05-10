@@ -39,6 +39,11 @@ $(document).ready(function() {
       var iimpactachieved = entry[n].gsx$impactachieved.$t;
       var icohorts = entry[n].gsx$cohorts.$t;
 
+      // Change to the TFM logo if there is no logo
+      if (!iimage) {
+        iimage = "http://i.imgur.com/JpsPCfQ.jpg";
+      }
+      
       // Refreshes the Modal
       $('#myModalLabel').empty();
       $('#modal-body-1').empty();
@@ -84,7 +89,12 @@ $(document).ready(function() {
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
         var icohorts = entry[i].gsx$cohorts.$t;
-
+        
+        // Change to the TFM logo if there is no logo
+        if (!iimage) {
+          iimage = "http://i.imgur.com/JpsPCfQ.jpg";
+        }
+        
         appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
 
       };
@@ -265,6 +275,33 @@ $(document).ready(function() {
     });
   }
 
+  // Create the status button function
+  function getStatus() {
+    $.getJSON(url, function(data) {
+      var statustemp = [];
+      var entry = data.feed.entry;
+      
+      function appendStatus(status) {
+        $("#filter-status").append('<li class="button"><input type="checkbox" class="filtercheckbox" id="filter-' + status + '" />' + status + '</li>');
+      }
+      
+      // Go through all the statuses
+      for (var i = 0; i < entry.length; i++) {
+        var istatus = entry[i].gsx$status.$t;
+        
+        if (statustemp.indexOf(istatus) < 0) {
+          statustemp.push(istatus);
+        }
+      }
+      
+      // Apend the Statuses
+      for (var i = 0; i < statustemp.length; i++) {
+        appendStatus(statustemp[i]);
+      }
+      
+    });
+  }
+  
   // Create the cohort button function
   function getCohort() {
     $.getJSON(url, function(data) {
@@ -298,6 +335,7 @@ $(document).ready(function() {
 
   // Generate the Initial Data
   getCategories();
+  getStatus();
   getCohort();
   getData();
 
@@ -399,6 +437,14 @@ $(document).ready(function() {
     var filteredword = $(this).attr("id").replace('filter-', '');
     idvfilterData(filteredword, "cohort");
   });
+  
+  // Status filter
+  $("#filter-status").delegate(".filtercheckbox", "click", function() {
+    var id = $(this).attr("id");
+    var categoryp = $(this).attr("id").replace('filter-', ''); 
+    
+    checkboxfilter(categoryp, id);
+  });
 
   // North
   $("#filter-north").click(function() {
@@ -428,22 +474,6 @@ $(document).ready(function() {
   $("#filter-south").click(function() {
     var id = $(this).attr("id");
     var categoryp = "South";
-
-    checkboxfilter(categoryp, id);
-  });
-
-  // Active
-  $("#filter-active").click(function() {
-    var id = $(this).attr("id");
-    var categoryp = "Active";
-
-    checkboxfilter(categoryp, id);
-  });
-
-  // Inactive
-  $("#filter-inactive").click(function() {
-    var id = $(this).attr("id");
-    var categoryp = "Inactive";
 
     checkboxfilter(categoryp, id);
   });
