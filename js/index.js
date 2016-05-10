@@ -38,7 +38,7 @@ $(document).ready(function() {
       var idesiredoutcome = entry[n].gsx$desiredoutcome.$t;
       var iimpactachieved = entry[n].gsx$impactachieved.$t;
       var icohorts = entry[n].gsx$cohorts.$t;
-      
+
       // Change to the TFM logo if there is no logo
       if (!iimage) {
         iimage = "http://i.imgur.com/JpsPCfQ.jpg";
@@ -51,8 +51,8 @@ $(document).ready(function() {
       $('.modal-footer').empty();
 
       $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb modal-thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">Official Website</a></h4>');
-      $('#modal-body-1').append('<br><br><h4>Cohorts:</h4><span class="modal-filter" id="modal-category-' + icohorts + '">' + icohorts + '</span><br><br><h4>Main Category:</h4><span class="modal-filter" id="modal-category-' + icategory + '">' + icategory + '</span><br><br><h4>Related Categories:</h4>' + isubcategory + '<br><br><h4>Fellow(s):</h4>' + ifellow + '<br><br><h4>Status:</h4><span class="modal-filter" id="modal-status-' + istatus + '">' + istatus + '</span><br><br><h4>School and State:</h4>' + ischool + ', ' + istate + '<br><br><h4>Region:</h4><span class="modal-filter" id="modal-region-' + iregion + '">' + iregion + '</span><br><br><h4>Stakeholders:</h4>' + istakeholders + '<br><br><h4>Resources:</h4>' + iresources);
-      $('#modal-body-2').append('<br><br><h4>Description:</h4>' + idescription + '<br><br><h4>Activity:</h4>' + iactivity + '<br><br><h4>Desired Outcome:</h4>' + idesiredoutcome + '<br><br><h4>Impact Achieved:</h4>' + iimpactachieved + '<br><br><h4>Challenges faced and Plans to overcome:');
+      $('#modal-body-1').append('<div class="row"><h4>Cohorts:</h4><span class="modal-filter" id="modal-category-' + icohorts + '">' + icohorts + '</span></div><div class="row"><h4>Main Category:</h4><span class="modal-filter" id="modal-category-' + icategory + '">' + icategory + '</span></div><div class="row"><h4>Related Categories:</h4>' + isubcategory + '</div><div class="row"><h4>Fellow(s):</h4>' + ifellow + '</div><div class="row"><h4>Status:</h4><span class="modal-filter" id="modal-status-' + istatus + '">' + istatus + '</div></span><div class="row"><h4>School and State:</h4>' + ischool + ', ' + istate + '</div><div class="row"><h4>Region:</h4><span class="modal-filter" id="modal-region-' + iregion + '">' + iregion + '</div><div class="row"></span><h4>Stakeholders:</h4>' + istakeholders + '</div><div class="row"><h4>Resources:</h4>' + iresources + '</div>');
+      $('#modal-body-2').append('<div class="row"><h4>Description:</h4>' + idescription + '</div><div class="row"><h4>Activity:</h4>' + iactivity + '</div><div class="row"><h4>Desired Outcome:</h4>' + idesiredoutcome + '</div><div class="row"><h4>Impact Achieved:</h4>' + iimpactachieved + '</div><div class="row"><h4>Challenges faced and Plans to overcome:' + '</div>');
 
       $('#myModal').modal("show");
 
@@ -62,12 +62,12 @@ $(document).ready(function() {
   // Append Data
   function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
     // Append the top bar for "Initiative" & "Category"
-    if ( $('.fixed-list-container ul li').length == 0 ) {
-      $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-6 col-xs-6"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div></div>')
+    if ($('.fixed-list-container ul li').length == 0) {
+      $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-5 col-xs-5"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div><div class="col-ms-1 col-xs-1"><span>Cohort</span></div></div>')
     }
-    
+
     // Append the initiative that was filtered
-      $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"></div><div class="col-ms-6 col-xs-6"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div></li>');
+    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"></div><div class="col-ms-5 col-xs-5"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -121,13 +121,14 @@ $(document).ready(function() {
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
         var icohorts = entry[i].gsx$cohorts.$t;
+        var iresources = entry[i].gsx$resources.$t;
 
         // Filters the cateogries
-        function iscorrectcategory(kategori, subkategori, region, status, nombor) {
+        function iscorrectcategory(kategori, subkategori, region, status, nombor, resources) {
           // Checks if Main Category Only is checked
           if (document.getElementById("maincategoryonly").checked) {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0 && resources.indexOf(tempfarray[l]) < 0) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
@@ -137,7 +138,7 @@ $(document).ready(function() {
             }
           } else {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l] ) < 0 && resources.indexOf(tempfarray[l]) < 0) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
@@ -148,7 +149,7 @@ $(document).ready(function() {
           }
         };
 
-        iscorrectcategory(icategory, isubcategory, iregion, istatus, i);
+        iscorrectcategory(icategory, isubcategory, iregion, istatus, i, iresources);
 
       };
     });
@@ -177,6 +178,7 @@ $(document).ready(function() {
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
         var icohorts = entry[i].gsx$cohorts.$t;
+        var iresources = entry[i].gsx$resources.$t;
 
         if (type == "region") {
           if (iregion.indexOf(filteredword) >= 0) {
@@ -188,6 +190,10 @@ $(document).ready(function() {
           }
         } else if (type == "cohort") {
           if (icohorts.indexOf(filteredword) >= 0) {
+            appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
+          }
+        } else if (type == "resources") {
+          if (iresources.indexOf(filteredword) >= 0) {
             appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
           }
         }
@@ -208,6 +214,7 @@ $(document).ready(function() {
         var inum = i;
         var ititle = entry[i].gsx$title.$t;
         var icategory = entry[i].gsx$category.$t;
+        var isubcategory = entry[i].gsx$subcategory.$t;
         var idescription = entry[i].gsx$description.$t;
         var iwebsite = entry[i].gsx$website.$t;
         var iimage = entry[i].gsx$image.$t;
@@ -227,6 +234,7 @@ $(document).ready(function() {
         searchword = searchword.toLowerCase();
         var ltitle = ititle.toLowerCase();
         var lcategory = icategory.toLowerCase();
+        var lsubcategory = isubcategory.toLowerCase();
         var ldescription = idescription.toLowerCase();
         var lstatus = istatus.toLowerCase();
         var lregion = iregion.toLowerCase();
@@ -239,7 +247,7 @@ $(document).ready(function() {
         var ldesiredoutcome = idesiredoutcome.toLowerCase();
         var limpactachieved = iimpactachieved.toLowerCase();
 
-        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0 || icohorts.indexOf(searchword) >= 0) {
+        if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0 || icohorts.indexOf(searchword) >= 0 || lsubcategory.indexOf(searchword) >= 0) {
           appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
         };
       };
@@ -266,6 +274,7 @@ $(document).ready(function() {
       }
     });
   }
+
   // Create the status button function
   function getStatus() {
     $.getJSON(url, function(data) {
@@ -273,7 +282,7 @@ $(document).ready(function() {
       var entry = data.feed.entry;
       
       function appendStatus(status) {
-        $("#filter-status").append('<li class="button" id="filter-' + status + '">' + status + '</li>');
+        $("#filter-status").append('<li class="button"><input type="checkbox" class="filtercheckbox" id="filter-' + status + '" />' + status + '</li>');
       }
       
       // Go through all the statuses
@@ -292,7 +301,6 @@ $(document).ready(function() {
       
     });
   }
-  
   
   // Create the cohort button function
   function getCohort() {
@@ -429,11 +437,19 @@ $(document).ready(function() {
     var filteredword = $(this).attr("id").replace('filter-', '');
     idvfilterData(filteredword, "cohort");
   });
+  
+  // Status filter
+  $("#filter-status").delegate(".filtercheckbox", "click", function() {
+    var id = $(this).attr("id");
+    var categoryp = $(this).attr("id").replace('filter-', ''); 
+    
+    checkboxfilter(categoryp, id);
+  });
 
   // North
   $("#filter-north").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "North"
+    var categoryp = "North";
 
     checkboxfilter(categoryp, id);
   });
@@ -441,15 +457,15 @@ $(document).ready(function() {
   // South
   $("#filter-east").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "East"
+    var categoryp = "East";
 
     checkboxfilter(categoryp, id);
   });
 
   // West
-  $("#filter-west").click(function() {
+  $("#filter-central").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "West"
+    var categoryp = "Central";
 
     checkboxfilter(categoryp, id);
   });
@@ -457,30 +473,44 @@ $(document).ready(function() {
   // South
   $("#filter-south").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "South"
+    var categoryp = "South";
 
     checkboxfilter(categoryp, id);
   });
 
-  // Active
-  $("#filter-active").click(function() {
+  $("#filter-training").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Active"
+    var categoryp = "Training & Upskilling";
 
     checkboxfilter(categoryp, id);
   });
 
-  // Inactive
-  $("#filter-inactive").click(function() {
+  $("#filter-manpower").click(function() {
     var id = $(this).attr("id");
-    var categoryp = "Inactive"
+    var categoryp = "Manpower";
 
     checkboxfilter(categoryp, id);
   });
 
-  // wat
-  $("#filter-notwat").click(function() {
-    getModal(1);
+  $("#filter-funding").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Funding";
+
+    checkboxfilter(categoryp, id);
+  });
+
+  $("#filter-thought-partner").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Thought Partner";
+
+    checkboxfilter(categoryp, id);
+  });
+
+  $("#filter-partnership").click(function() {
+    var id = $(this).attr("id");
+    var categoryp = "Partnership";
+
+    checkboxfilter(categoryp, id);
   });
 
   // Show all
