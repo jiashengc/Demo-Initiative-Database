@@ -43,7 +43,7 @@ $(document).ready(function() {
       if (!iimage) {
         iimage = "http://i.imgur.com/JpsPCfQ.jpg";
       }
-      
+
       // Refreshes the Modal
       $('#myModalLabel').empty();
       $('#modal-body-1').empty();
@@ -61,6 +61,11 @@ $(document).ready(function() {
 
   // Append Data
   function appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts) {
+    // Check if there's an image
+    if (!iimage) {
+      iimage = "http://i.imgur.com/JpsPCfQ.jpg";
+    }
+
     // Append the top bar for "Initiative" & "Category"
     if ($('.fixed-list-container ul li').length == 0) {
       $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-5 col-xs-5"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div><div class="col-ms-1 col-xs-1"><span>Cohort</span></div></div>')
@@ -89,12 +94,7 @@ $(document).ready(function() {
         var iregion = entry[i].gsx$region.$t;
         var ifellow = entry[i].gsx$fellow.$t;
         var icohorts = entry[i].gsx$cohorts.$t;
-        
-        // Change to the TFM logo if there is no logo
-        if (!iimage) {
-          iimage = "http://i.imgur.com/JpsPCfQ.jpg";
-        }
-        
+
         appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
 
       };
@@ -138,7 +138,7 @@ $(document).ready(function() {
             }
           } else {
             for (var l = 0; l < tempfarray.length; l++) {
-              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l] ) < 0 && resources.indexOf(tempfarray[l]) < 0) {
+              if (kategori.indexOf(tempfarray[l]) < 0 && subkategori.indexOf(tempfarray[l]) < 0 && region.indexOf(tempfarray[l]) < 0 && status.indexOf(tempfarray[l]) < 0 && resources.indexOf(tempfarray[l]) < 0) {
                 return false;
                 break;
               } else if (l == tempfarray.length - 1) {
@@ -280,28 +280,28 @@ $(document).ready(function() {
     $.getJSON(url, function(data) {
       var statustemp = [];
       var entry = data.feed.entry;
-      
+
       function appendStatus(status) {
         $("#filter-status").append('<li class="button"><input type="checkbox" class="filtercheckbox" id="filter-' + status + '" />' + status + '</li>');
       }
-      
+
       // Go through all the statuses
       for (var i = 0; i < entry.length; i++) {
         var istatus = entry[i].gsx$status.$t;
-        
+
         if (statustemp.indexOf(istatus) < 0) {
           statustemp.push(istatus);
         }
       }
-      
+
       // Apend the Statuses
       for (var i = 0; i < statustemp.length; i++) {
         appendStatus(statustemp[i]);
       }
-      
+
     });
   }
-  
+
   // Create the cohort button function
   function getCohort() {
     $.getJSON(url, function(data) {
@@ -437,12 +437,12 @@ $(document).ready(function() {
     var filteredword = $(this).attr("id").replace('filter-', '');
     idvfilterData(filteredword, "cohort");
   });
-  
+
   // Status filter
   $("#filter-status").delegate(".filtercheckbox", "click", function() {
     var id = $(this).attr("id");
-    var categoryp = $(this).attr("id").replace('filter-', ''); 
-    
+    var categoryp = $(this).attr("id").replace('filter-', '');
+
     checkboxfilter(categoryp, id);
   });
 

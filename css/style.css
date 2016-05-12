@@ -360,8 +360,10 @@ h1 {
 }
 
 #lovely-things-list .thumb {
-  width: 70px;
-  height: 70px;
+  max-width: 70px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
   float: left;
   margin-top: 3px;
   margin-right: 13px;
@@ -564,8 +566,10 @@ MODAL
 }
 
 .modal-thumb {
-  width: 70px;
-  height: 70px;
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
   margin: 15px;
 }
 
