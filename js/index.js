@@ -267,7 +267,7 @@ $(document).ready(function() {
       for (var i = 0; i < entry.length; i++) {
         var icategory = entry[i].gsx$category.$t;
 
-        if (cattemp.indexOf(icategory) < 0) {
+        if (cattemp.indexOf(icategory) < 0 && icategory != "") {
           cattemp.push(icategory);
           appendCategory(icategory);
         }
@@ -289,7 +289,7 @@ $(document).ready(function() {
       for (var i = 0; i < entry.length; i++) {
         var istatus = entry[i].gsx$status.$t;
 
-        if (statustemp.indexOf(istatus) < 0) {
+        if (statustemp.indexOf(istatus) < 0 && istatus != "") {
           statustemp.push(istatus);
         }
       }
