@@ -315,9 +315,18 @@ $(document).ready(function() {
       // Go through all the cohorts
       for (var i = 0; i < entry.length; i++) {
         var icohorts = entry[i].gsx$cohorts.$t;
-
-        if (cohortemp.indexOf(icohorts) < 0) {
-          cohortemp.push(icohorts);
+        var icohortemp = [];
+        
+        // Check if there's extra cohort dates
+        if (icohorts.length >= 4) {
+          icohorts = icohorts.replace(",", "");
+          icohortemp = icohorts.split(" ");
+        }
+        
+        for (var l = 0; l < icohortemp.length; l++) {
+          if (cohortemp.indexOf(icohortemp[l]) < 0 && !isNaN(parseFloat(icohortemp[l])) && isFinite(icohortemp[l])) {
+            cohortemp.push(icohortemp[l]);
+          }
         }
       }
 
