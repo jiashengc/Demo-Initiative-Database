@@ -65,14 +65,16 @@ $(document).ready(function() {
     if (!iimage) {
       iimage = "http://i.imgur.com/JpsPCfQ.jpg";
     }
-
+    
     // Append the top bar for "Initiative" & "Category"
     if ($('.fixed-list-container ul li').length == 0) {
       $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-5 col-xs-5"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div><div class="col-ms-1 col-xs-1"><span>Cohort</span></div></div>')
     }
 
+    var lLength = $('.fixed-list-container ul li').length;
+    
     // Append the initiative that was filtered
-    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"></div><div class="col-ms-5 col-xs-5"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
+    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"><span id="lLength">' + lLength + '.</span></div><div class="col-ms-5 col-xs-5"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
   }
 
   // Get the Data from the spreadsheet using JSON
