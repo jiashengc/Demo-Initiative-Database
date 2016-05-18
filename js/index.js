@@ -357,12 +357,15 @@ $(document).ready(function() {
         }
         
         for (var l = 0; l < icohortemp.length; l++) {
-          if (cohortemp.indexOf(icohortemp[l]) < 0 && !isNaN(parseFloat(icohortemp[l])) && isFinite(icohortemp[l])) {
+          if (cohortemp.indexOf(icohortemp[l]) < 0) {
             cohortemp.push(icohortemp[l]);
           }
         }
       }
-
+      
+      // Sort by alphabetical order
+      cohortemp.sort();
+      
       // Sort by Ascending order
       cohortemp.sort(function(a, b) {
         return b - a
