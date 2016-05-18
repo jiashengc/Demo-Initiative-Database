@@ -14,6 +14,16 @@ $(document).ready(function() {
   // Make sure it is public or set to Anyone with link can view 
   var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
 
+  // Check for 0 Initiatives
+  function noInitiatives() {
+    var i = $('.fixed-list-container ul li').length;
+    
+    if (i <= 0) {
+      $('.defective-toptop').empty();
+      $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 0 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+    }
+  }
+  
   // Create Modal
   function getModal(itemid) {
     $.getJSON(url, function(data) {
@@ -65,14 +75,31 @@ $(document).ready(function() {
     if (!iimage) {
       iimage = "http://i.imgur.com/JpsPCfQ.jpg";
     }
-
+    
     // Append the top bar for "Initiative" & "Category"
     if ($('.fixed-list-container ul li').length == 0) {
       $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-5 col-xs-5"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div><div class="col-ms-1 col-xs-1"><span>Cohort</span></div></div>')
     }
 
+    var lLength = $('.fixed-list-container ul li').length;
+    
     // Append the initiative that was filtered
-    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"></div><div class="col-ms-5 col-xs-5"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
+    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"><span id="lLength">' + lLength + '.</span></div><div class="col-ms-5 col-xs-5"><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
+    
+    // Change the current list number
+    $('.defective-toptop').empty();
+    
+    // Check how many entries there are
+    switch(lLength) {
+      case 0: $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 0 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+        break;
+        
+      case 1: $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 1 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+        break;
+        
+      default: $('.defective-toptop').append('<h5 class="current-list-number">There are </h5><h5 class="current-list-number list-nombor">' + lLength + '</h5><h5 class="current-list-number"> Initiatives</h5><h5 class="current-list-number"> in this list</h5>');
+       
+    }
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -97,7 +124,7 @@ $(document).ready(function() {
 
         appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
 
-      };
+      }
     });
   }
 
@@ -151,7 +178,9 @@ $(document).ready(function() {
 
         iscorrectcategory(icategory, isubcategory, iregion, istatus, i, iresources);
 
-      };
+      }
+      
+      noInitiatives();
     });
   }
 
@@ -198,7 +227,9 @@ $(document).ready(function() {
           }
         }
 
-      };
+      }
+      
+      noInitiatives();
     });
   }
 
@@ -250,7 +281,9 @@ $(document).ready(function() {
         if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0 || icohorts.indexOf(searchword) >= 0 || lsubcategory.indexOf(searchword) >= 0) {
           appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
         };
-      };
+      }
+      
+      noInitiatives();
     });
   }
 
@@ -315,9 +348,18 @@ $(document).ready(function() {
       // Go through all the cohorts
       for (var i = 0; i < entry.length; i++) {
         var icohorts = entry[i].gsx$cohorts.$t;
-
-        if (cohortemp.indexOf(icohorts) < 0) {
-          cohortemp.push(icohorts);
+        var icohortemp = [];
+        
+        // Check if there's extra cohort dates
+        if (icohorts.length >= 4) {
+          icohorts = icohorts.replace(",", "");
+          icohortemp = icohorts.split(" ");
+        }
+        
+        for (var l = 0; l < icohortemp.length; l++) {
+          if (cohortemp.indexOf(icohortemp[l]) < 0 && !isNaN(parseFloat(icohortemp[l])) && isFinite(icohortemp[l])) {
+            cohortemp.push(icohortemp[l]);
+          }
         }
       }
 
