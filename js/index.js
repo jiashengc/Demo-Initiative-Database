@@ -22,8 +22,10 @@ $(document).ready(function() {
       $('.defective-toptop').empty();
       $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 0 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
     }
+    
+    $('.list-nombor').addClass("animated bounceIn");
   }
-  
+
   // Create Modal
   function getModal(itemid) {
     $.getJSON(url, function(data) {
@@ -75,31 +77,38 @@ $(document).ready(function() {
     if (!iimage) {
       iimage = "http://i.imgur.com/JpsPCfQ.jpg";
     }
-    
+
     // Append the top bar for "Initiative" & "Category"
     if ($('.fixed-list-container ul li').length == 0) {
       $('.list').append('<li><div class="row initiative-bar"><div class="col-ms-2 col-xs-2"></div><div class="col-ms-5 col-xs-5"><span class="initiative-title">Initiative</span></div><div class="col-ms-2 col-xs-2"><span>Category</span></div><div class="col-ms-2 col-xs-2"><span>Fellow(s)</span></div><div class="col-ms-1 col-xs-1"><span>Cohort</span></div></div>')
     }
 
     var lLength = $('.fixed-list-container ul li').length;
-    
+
     // Append the initiative that was filtered
-    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"><span id="lLength">' + lLength + '.</span></div><div class="col-ms-5 col-xs-5"><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
-    
+    $('.list').append('<li class="animated fadeIn"><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"><span id="lLength">' + lLength + '.</span></div><div class="col-ms-5 col-xs-5"><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
+
     // Change the current list number
+    $('.list-nombor').addClass("animated fadeOut");
     $('.defective-toptop').empty();
-    
+
     // Check how many entries there are
-    switch(lLength) {
-      case 0: $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 0 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+    switch (lLength) {
+      case 0:
+        $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 0 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
         break;
-        
-      case 1: $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 1 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+
+      case 1:
+        $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 1 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
         break;
-        
-      default: $('.defective-toptop').append('<h5 class="current-list-number">There are </h5><h5 class="current-list-number list-nombor">' + lLength + '</h5><h5 class="current-list-number"> Initiatives</h5><h5 class="current-list-number"> in this list</h5>');
-       
+
+      default:
+        $('.defective-toptop').append('<h5 class="current-list-number">There are </h5><h5 class="current-list-number list-nombor">' + lLength + '</h5><h5 class="current-list-number"> Initiatives</h5><h5 class="current-list-number"> in this list</h5>');
+
     }
+    
+    // Really check if there's initiatives.
+    noInitiatives();
   }
 
   // Get the Data from the spreadsheet using JSON
@@ -179,7 +188,7 @@ $(document).ready(function() {
         iscorrectcategory(icategory, isubcategory, iregion, istatus, i, iresources);
 
       }
-      
+
       noInitiatives();
     });
   }
@@ -228,7 +237,7 @@ $(document).ready(function() {
         }
 
       }
-      
+
       noInitiatives();
     });
   }
@@ -282,7 +291,7 @@ $(document).ready(function() {
           appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
         };
       }
-      
+
       noInitiatives();
     });
   }
@@ -294,7 +303,7 @@ $(document).ready(function() {
       var entry = data.feed.entry;
 
       function appendCategory(category) {
-        $("#mainkategories").append('<li class="button"><input type="checkbox" class="filtercheckbox" id="filter-' + category + '" />' + category + '</li>')
+        $("#mainkategories").append('<li class="button animated fadeIn"><input type="checkbox" class="filtercheckbox" id="filter-' + category + '" />' + category + '</li>')
       }
 
       for (var i = 0; i < entry.length; i++) {
@@ -315,7 +324,7 @@ $(document).ready(function() {
       var entry = data.feed.entry;
 
       function appendStatus(status) {
-        $("#filter-status").append('<li class="button"><input type="checkbox" class="filtercheckbox" id="filter-' + status + '" />' + status + '</li>');
+        $("#filter-status").append('<li class="button animated fadeIn"><input type="checkbox" class="filtercheckbox" id="filter-' + status + '" />' + status + '</li>');
       }
 
       // Go through all the statuses
@@ -342,30 +351,30 @@ $(document).ready(function() {
       var entry = data.feed.entry;
 
       function appendCohort(cohort) {
-        $("#filter-cohort").append('<li class="button" id="filter-' + cohort + '">' + cohort + '</li>');
+        $("#filter-cohort").append('<li class="button animated fadeIn" id="filter-' + cohort + '">' + cohort + '</li>');
       }
 
       // Go through all the cohorts
       for (var i = 0; i < entry.length; i++) {
         var icohorts = entry[i].gsx$cohorts.$t;
         var icohortemp = [];
-        
+
         // Check if there's extra cohort dates
         if (icohorts.length >= 4) {
           icohorts = icohorts.replace(",", "");
           icohortemp = icohorts.split(" ");
         }
-        
+
         for (var l = 0; l < icohortemp.length; l++) {
           if (cohortemp.indexOf(icohortemp[l]) < 0) {
             cohortemp.push(icohortemp[l]);
           }
         }
       }
-      
+
       // Sort by alphabetical order
       cohortemp.sort();
-      
+
       // Sort by Ascending order
       cohortemp.sort(function(a, b) {
         return b - a
@@ -566,3 +575,4 @@ $(document).ready(function() {
     getData();
   });
 });
+
