@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
-
 body,
 div,
 dl,
@@ -122,7 +121,6 @@ body {
   padding: 120px 0;
 }
 
-
 body.clearfix {
   display: block;
 }
@@ -238,6 +236,21 @@ input:focus {
 
 .primary-button:hover {
   background-color: #808080;
+}
+
+.defective-toptop {
+  float: left;
+  margin: auto;
+  width: 70%;
+  margin-left: 16px;
+  text-align: center;
+}
+
+.defective-toptop h5 {
+  font-size: 40px;
+  color: white;
+  text-shadow: 0px 1px 3px black;
+  font-weight: bold;
 }
 
 .defective-container .button {
@@ -571,12 +584,13 @@ MODAL
   margin: 15px;
 }
 
+
 /* 
 DEFECTIVE SECTION
 */
 
 .defective-top {
-  padding-top: 190px;
+  padding-top: 150px;
   width: 60%;
   float: center;
   margin: auto;
