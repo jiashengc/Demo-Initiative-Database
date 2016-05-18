@@ -125,8 +125,6 @@ $(document).ready(function() {
         appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
 
       }
-      
-      // Do something here
     });
   }
 
