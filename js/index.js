@@ -14,6 +14,16 @@ $(document).ready(function() {
   // Make sure it is public or set to Anyone with link can view 
   var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
 
+  // Check for 0 Initiatives
+  function noInitiatives() {
+    var i = $('.fixed-list-container ul li').length;
+    
+    if (i <= 0) {
+      $('.defective-toptop').empty();
+      $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 0 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+    }
+  }
+  
   // Create Modal
   function getModal(itemid) {
     $.getJSON(url, function(data) {
@@ -114,7 +124,9 @@ $(document).ready(function() {
 
         appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
 
-      };
+      }
+      
+      // Do something here
     });
   }
 
@@ -168,7 +180,9 @@ $(document).ready(function() {
 
         iscorrectcategory(icategory, isubcategory, iregion, istatus, i, iresources);
 
-      };
+      }
+      
+      noInitiatives();
     });
   }
 
@@ -215,7 +229,9 @@ $(document).ready(function() {
           }
         }
 
-      };
+      }
+      
+      noInitiatives();
     });
   }
 
@@ -267,7 +283,9 @@ $(document).ready(function() {
         if (ltitle.indexOf(searchword) >= 0 || ldescription.indexOf(searchword) >= 0 || lcategory.indexOf(searchword) >= 0 || lstatus.indexOf(searchword) >= 0 || lregion.indexOf(searchword) >= 0 || lfellow.indexOf(searchword) >= 0 || lschool.indexOf(searchword) >= 0 || lstate.indexOf(searchword) >= 0 || lstakeholders.indexOf(searchword) >= 0 || lresources.indexOf(searchword) >= 0 || lactivity.indexOf(searchword) >= 0 || ldesiredoutcome.indexOf(searchword) >= 0 || limpactachieved.indexOf(searchword) >= 0 || icohorts.indexOf(searchword) >= 0 || lsubcategory.indexOf(searchword) >= 0) {
           appendData(inum, ititle, icategory, idescription, iwebsite, iimage, iregion, ifellow, icohorts);
         };
-      };
+      }
+      
+      noInitiatives();
     });
   }
 
