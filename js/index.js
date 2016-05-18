@@ -74,7 +74,22 @@ $(document).ready(function() {
     var lLength = $('.fixed-list-container ul li').length;
     
     // Append the initiative that was filtered
-    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"><span id="lLength">' + lLength + '.</span></div><div class="col-ms-5 col-xs-5"><div class="side-breaker"></div><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
+    $('.list').append('<li><div class="row"><div class="col-ms-1 col-xs-1"><img src="' + iimage + '" class="thumb" /></div><div class="col-ms-1 col-xs-1"><span id="lLength">' + lLength + '.</span></div><div class="col-ms-5 col-xs-5"><span class="name" id="' + inum + '">' + ititle + '</span><br><div class="breaker"></div><p class="description">' + idescription + '</p></div><div class="col-ms-2 col-xs-2"><h5 class="category">' + icategory + '</h5></div><div class="cold-ms-2 col-xs-2"><h5 class="category">' + ifellow + '</h5></div><div class="col-ms-1 col-xs-1"><h5 class="category">' + icohorts + '</h5></div></li>');
+    
+    // Change the current list number
+    $('.defective-toptop').empty();
+    
+    // Check how many entries there are
+    switch(lLength) {
+      case 0: $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 0 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+        break;
+        
+      case 1: $('.defective-toptop').append('<h5 class="current-list-number">There is </h5><h5 class="current-list-number list-nombor">' + 1 + '</h5><h5 class="current-list-number"> Initiative</h5><h5 class="current-list-number"> in this list</h5>');
+        break;
+        
+      default: $('.defective-toptop').append('<h5 class="current-list-number">There are </h5><h5 class="current-list-number list-nombor">' + lLength + '</h5><h5 class="current-list-number"> Initiatives</h5><h5 class="current-list-number"> in this list</h5>');
+       
+    }
   }
 
   // Get the Data from the spreadsheet using JSON
