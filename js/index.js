@@ -50,7 +50,6 @@ $(document).ready(function() {
       var idesiredoutcome = entry[n].gsx$desiredoutcome.$t;
       var iimpactachieved = entry[n].gsx$impactachieved.$t;
       var icohorts = entry[n].gsx$cohorts.$t;
-      var ichallengesfaced = entry[n].gsx$ChallengesfacedandPlanstoOvercome.$t;
 
       // Change to the TFM logo if there is no logo
       if (!iimage) {
@@ -65,7 +64,7 @@ $(document).ready(function() {
 
       $('#myModalLabel').append(ititle + '<br><img src="' + iimage + '" class="thumb modal-thumb" /><br><h4><a class="modal-website" href="' + iwebsite + '">Official Website</a></h4>');
       $('#modal-body-1').append('<div class="row"><h4>Cohorts:</h4><span class="modal-filter" id="modal-category-' + icohorts + '">' + icohorts + '</span></div><div class="row"><h4>Main Category:</h4><span class="modal-filter" id="modal-category-' + icategory + '">' + icategory + '</span></div><div class="row"><h4>Related Categories:</h4>' + isubcategory + '</div><div class="row"><h4>Fellow(s):</h4>' + ifellow + '</div><div class="row"><h4>Status:</h4><span class="modal-filter" id="modal-status-' + istatus + '">' + istatus + '</div></span><div class="row"><h4>School and State:</h4>' + ischool + ', ' + istate + '</div><div class="row"><h4>Region:</h4><span class="modal-filter" id="modal-region-' + iregion + '">' + iregion + '</div><div class="row"></span><h4>Stakeholders:</h4>' + istakeholders + '</div><div class="row"><h4>Resources:</h4>' + iresources + '</div>');
-      $('#modal-body-2').append('<div class="row"><h4>Description:</h4>' + idescription + '</div><div class="row"><h4>Activity:</h4>' + iactivity + '</div><div class="row"><h4>Desired Outcome:</h4>' + idesiredoutcome + '</div><div class="row"><h4>Impact Achieved:</h4>' + iimpactachieved + '</div><div class="row"><h4>Challenges faced and Plans to overcome:</h4>' + ichallengesfaced + '</div>');
+      $('#modal-body-2').append('<div class="row"><h4>Description:</h4>' + idescription + '</div><div class="row"><h4>Activity:</h4>' + iactivity + '</div><div class="row"><h4>Desired Outcome:</h4>' + idesiredoutcome + '</div><div class="row"><h4>Impact Achieved:</h4>' + iimpactachieved + '</div><div class="row"><h4>Challenges faced and Plans to overcome:' + '</div>');
 
       $('#myModal').modal("show");
 
